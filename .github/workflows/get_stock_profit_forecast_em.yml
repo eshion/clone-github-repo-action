@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:      
       - name: 迁出代码
-        uses: GuillaumeFalourd/clone-github-repo-action@v2
+        uses: eshion/clone-github-repo-action@main
         with:
           owner: 'eshion'
           repository: 'stock'
