@@ -39,9 +39,11 @@ jobs:
           pip install -r requirements.txt
       - name: 执行任务
         run: |
+          cd stock
           python tools/get_stock_profit_forecast_em.py
       - name: 提交更改
         run: |
+          cd stock
           git config core.ignorecase false
           git config --global credential.helper cache
           git config --local user.email "eshion@qq.com"
