@@ -1,0 +1,29 @@
+name: 测试
+
+# 触发条件
+on:
+  workflow_dispatch:
+  # 定时触发，UTC->Beijing 00:00->08:00
+  # schedule:
+    # - cron: '0 9 * * 2-6'
+
+jobs:
+    
+  job-public-repo-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Clone eshion/stock PRIVATE repository
+        uses: eshion/clone-github-repo-action@v2
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      
+      - name: Access cloned repository content
+        run: |
+          echo "ROOT"
+          ls -la
+          echo "CLONED REPO"
+          cd stock
+          ls -la
