@@ -14,7 +14,7 @@ jobs:
     steps:
       
       - name: Clone eshion/stock PRIVATE repository
-        uses: eshion/clone-github-repo-action@v2
+        uses: GuillaumeFalourd/clone-github-repo-action@v2
         with:
           owner: 'eshion'
           repository: 'stock'

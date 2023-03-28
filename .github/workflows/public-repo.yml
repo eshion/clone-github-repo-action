@@ -2,9 +2,9 @@
 name: Clone Public Repository Workflow
 
 on:
-  push:
-  schedule:
-    - cron: '0 3 * * *'
+  # push:
+  # schedule:
+  #   - cron: '0 3 * * *'
   workflow_dispatch:
 
 jobs:
