@@ -1,4 +1,4 @@
-name: 更新盈利预测
+name: 更新个股行业信息
 
 # 触发条件
 on:
@@ -40,7 +40,7 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          python tools/get_stock_profit_forecast_em.py
+          python tools/get_stock_individual_info.py
       - name: 提交更改
         run: |
           cd stock
@@ -49,6 +49,6 @@ jobs:
           git config --local user.email "eshion@qq.com"
           git config --local user.name "eshion"
           git add .
-          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新盈利预测"
+          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新个股行业信息"
           git pull
           git push
