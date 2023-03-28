@@ -9,7 +9,7 @@ on:
 
 jobs:
     
-  更新盈利预测:
+  job-public-repo-ubuntu:
     runs-on: ubuntu-latest
     steps:      
       - name: Clone eshion/stock PRIVATE repository
