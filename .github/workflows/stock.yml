@@ -1,0 +1,66 @@
+name: stock
+
+# 触发条件
+on:
+  workflow_dispatch:
+  # 定时触发，UTC->Beijing 00:00->08:00
+  schedule:
+    - cron: '0 4 * * *'
+
+jobs:
+    
+  deploy:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}      
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.GIT_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/run_in_Actions/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: get_relative_strength
+        run: |
+          cd stock
+          python tools/get_relative_strength.py
+      - name: get_stock_individual_info
+        run: |
+          cd stock
+          python tools/get_stock_individual_info.py
+      - name: get_stock_lg_indicator
+        run: |
+          cd stock
+          python tools/get_stock_lg_indicator.py
+      - name: get_stock_profit_forecast_em
+        run: |
+          cd stock
+          python tools/get_stock_profit_forecast_em.py
+      - name: 提交更改
+        run: |
+          cd stock
+          git config core.ignorecase false
+          git config --global credential.helper cache
+          git config --local user.email "eshion@qq.com"
+          git config --local user.name "eshion"
+          git add .
+          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新stock data"
+          git pull
+          git push
