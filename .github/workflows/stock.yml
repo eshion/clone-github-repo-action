@@ -37,22 +37,22 @@ jobs:
         run: |
           cd stock
           pip install -r requirements.txt
-      - name: get_relative_strength
-        run: |
-          cd stock
-          python tools/get_relative_strength.py
-      - name: get_stock_individual_info
-        run: |
-          cd stock
-          python tools/get_stock_individual_info.py
-      - name: get_stock_lg_indicator
-        run: |
-          cd stock
-          python tools/get_stock_lg_indicator.py
-      - name: get_stock_profit_forecast_em
+      - name: 更新盈利预测
         run: |
           cd stock
           python tools/get_stock_profit_forecast_em.py
+      - name: 更新历史涨幅
+        run: |
+          cd stock
+          python tools/get_relative_strength.py
+      - name: 更新个股行业信息
+        run: |
+          cd stock
+          python tools/get_stock_individual_info.py
+      - name: 更新个股指标
+        run: |
+          cd stock
+          python tools/get_stock_lg_indicator.py
       - name: 提交更改
         run: |
           cd stock
