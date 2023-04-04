@@ -22,6 +22,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
       - name: 加载缓存
         uses: actions/cache@v2
         with:
@@ -47,6 +49,10 @@ jobs:
         run: |
           cd stock
           python tools/get_latest_zcfz.py
+      - name: 更新分红配送
+        run: |
+          cd stock
+          python tools/get_latest_fhps.py
       - name: 更新历史涨幅
         run: |
           cd stock
