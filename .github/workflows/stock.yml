@@ -55,10 +55,10 @@ jobs:
       #   run: |
       #     cd stock
       #     python tools/get_stock_individual_info.py
-      - name: 更新个股指标
-        run: |
-          cd stock
-          python tools/get_stock_lg_indicator.py
+      # - name: 更新个股指标
+      #   run: |
+      #     cd stock
+      #     python tools/get_stock_lg_indicator.py
       - name: 提交更改
         run: |
           cd stock
