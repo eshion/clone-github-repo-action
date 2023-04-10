@@ -51,4 +51,4 @@ jobs:
           git add .
           git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新资产负债表"
           git pull
-          git push
+          git push -f

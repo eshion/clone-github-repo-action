@@ -51,4 +51,4 @@ jobs:
           git add .
           git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新历史涨幅"
           git pull
-          git push
+          git push -f
