@@ -52,7 +52,7 @@ jobs:
       - name: 更新分红配送
         run: |
           cd stock
-          python tools/get_latest_fhps.py
+          python tools/get_latest_fhps_ths.py
       - name: 更新历史涨幅
         run: |
           cd stock
