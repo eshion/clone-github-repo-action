@@ -40,7 +40,7 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          python tools/get_latest_fhps.py
+          python tools/get_latest_fhps_ths.py
       - name: 提交更改
         run: |
           cd stock
