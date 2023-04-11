@@ -41,26 +41,26 @@ jobs:
         run: |
           cd stock
           python tools/get_stock_profit_forecast_em.py
-      - name: 更新业绩报表
-        run: |
-          cd stock
-          python tools/get_latest_yjbb.py
       - name: 更新资产负债表
         run: |
           cd stock
           python tools/get_latest_zcfz.py
-      - name: 更新分红配送
+      - name: 更新业绩报表
         run: |
           cd stock
-          python tools/get_latest_fhps_ths.py
-      - name: 更新历史涨幅
-        run: |
-          cd stock
-          python tools/get_relative_strength.py
+          python tools/get_latest_yjbb.py
       - name: 更新个股行业信息
         run: |
           cd stock
           python tools/get_stock_individual_info.py
+      - name: 更新历史涨幅
+        run: |
+          cd stock
+          python tools/get_relative_strength.py
+      - name: 更新分红配送
+        run: |
+          cd stock
+          python tools/get_latest_fhps_ths.py
       # - name: 更新个股指标
       #   run: |
       #     cd stock
