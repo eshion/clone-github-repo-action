@@ -47,3 +47,14 @@ jobs:
         run: |
           cd stock
           python tools/test.py
+      - name: 提交更改
+        run: |
+          cd stock
+          git config core.ignorecase false
+          git config --global credential.helper cache
+          git config --local user.email "eshion@qq.com"
+          git config --local user.name "eshion"
+          git add .
+          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新资产负债表"
+          git pull
+          git push -f
