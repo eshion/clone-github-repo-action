@@ -34,16 +34,16 @@ jobs:
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
         env:
           PG_HOST: ${{ secrets.PG_HOST }}
           PG_PORT: ${{ secrets.PG_PORT }}
           PG_DATABASE: ${{ secrets.PG_DATABASE }}
           PG_USER: ${{ secrets.PG_USER }}
           PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
-        run: |
-          cd stock
-          pip install -r requirements.txt
-      - name: 执行任务
         run: |
           cd stock
           python tools/test.py
