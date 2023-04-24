@@ -46,12 +46,6 @@ jobs:
           cd stock
           pip install -r requirements.txt
       - name: 执行任务
-        env:
-          PG_HOST: ${{ secrets.PG_HOST }}
-          PG_PORT: ${{ secrets.PG_PORT }}
-          PG_DATABASE: ${{ secrets.PG_DATABASE }}
-          PG_USER: ${{ secrets.PG_USER }}
-          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
         run: |
           cd stock
           python tools/get_stock_profit_forecast_em.py

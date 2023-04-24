@@ -17,7 +17,15 @@ jobs:
         with:
           owner: 'eshion'
           repository: 'stock'
-          access-token: ${{ secrets.ACCESS_TOKEN }}      
+          access-token: ${{ secrets.ACCESS_TOKEN }}  
+      - name: 创建分支
+        run: |
+          cd stock
+          git config core.ignorecase false
+          git config --global credential.helper cache
+          git config --local user.email "eshion@qq.com"
+          git config --local user.name "eshion"
+          git checkout -b "个股信息"      
       - name: 安装Python
         uses: actions/setup-python@v2
         with:
@@ -38,23 +46,16 @@ jobs:
           cd stock
           pip install -r requirements.txt
       - name: 执行任务
-        env:
-          PG_HOST: ${{ secrets.PG_HOST }}
-          PG_PORT: ${{ secrets.PG_PORT }}
-          PG_DATABASE: ${{ secrets.PG_DATABASE }}
-          PG_USER: ${{ secrets.PG_USER }}
-          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
         run: |
           cd stock
           python tools/get_stock_individual_info.py
-      # - name: 提交更改
-      #   run: |
-      #     cd stock
-      #     git config core.ignorecase false
-      #     git config --global credential.helper cache
-      #     git config --local user.email "eshion@qq.com"
-      #     git config --local user.name "eshion"
-      #     git add .
-      #     git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新个股行业信息"
-      #     git pull
-      #     git push -f
+      - name: 提交更改
+        run: |
+          cd stock
+          git config core.ignorecase false
+          git config --global credential.helper cache
+          git config --local user.email "eshion@qq.com"
+          git config --local user.name "eshion"
+          git add .
+          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新个股信息"
+          git push origin "个股信息"
