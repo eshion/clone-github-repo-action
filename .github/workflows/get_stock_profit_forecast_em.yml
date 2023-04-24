@@ -26,6 +26,9 @@ jobs:
           git config --local user.email "eshion@qq.com"
           git config --local user.name "eshion"
           git checkout -b "盈利预测"
+          git pull
+          git fetch origin
+          git merge origin/main
       - name: 安装Python
         uses: actions/setup-python@v2
         with:
