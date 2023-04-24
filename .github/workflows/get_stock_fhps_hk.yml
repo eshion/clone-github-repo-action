@@ -61,5 +61,5 @@ jobs:
           git config --local user.email "eshion@qq.com"
           git config --local user.name "eshion"
           git add .
-          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新分红配送"
-          git push origin "分红配送"
+          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新分红配送HK"
+          git push origin "分红配送HK"
