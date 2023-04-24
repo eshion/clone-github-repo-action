@@ -26,6 +26,7 @@ jobs:
           git config --local user.email "eshion@qq.com"
           git config --local user.name "eshion"
           git checkout -b "业绩报表"
+          git branch --set-upstream-to=origin/main 业绩报表
           git pull
           git fetch origin
           git merge origin/main
