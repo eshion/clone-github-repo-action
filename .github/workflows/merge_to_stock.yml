@@ -25,11 +25,12 @@ jobs:
           git config --global credential.helper cache
           git config --local user.email "eshion@qq.com"
           git config --local user.name "eshion"
-          git branch
+          git fetch origin
+          git branch -a
           git checkout main
-          git merge 'origin/盈利预测'
+          git merge origin/盈利预测
           git log
-          # git branch -d "盈利预测"
+          # git branch -d origin/盈利预测
       - name: 安装Python
         uses: actions/setup-python@v2
         with:
