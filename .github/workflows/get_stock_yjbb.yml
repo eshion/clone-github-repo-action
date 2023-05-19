@@ -4,8 +4,8 @@ name: 更新业绩报表
 on:
   workflow_dispatch:
   # 定时触发，UTC->Beijing 00:00->08:00
-  # schedule:
-    # - cron: '30 16 * * *'
+  schedule:
+    - cron: '30 16 * * *'
 
 jobs:
     
