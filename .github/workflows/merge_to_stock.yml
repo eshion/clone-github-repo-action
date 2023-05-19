@@ -28,7 +28,7 @@ jobs:
           git fetch origin
           git branch -a
           git checkout main
-          git merge origin/个股信息 origin/历史涨幅 origin/分红配送 origin/分红配送HK origin/业绩报表 origin/资产负债表 origin/盈利预测 origin/财务指标HK 
+          git merge origin/个股信息 origin/历史涨幅 origin/分红配送 origin/分红配送HK origin/关键指标 origin/盈利预测 origin/财务指标HK 
       - name: 安装Python
         uses: actions/setup-python@v2
         with:
