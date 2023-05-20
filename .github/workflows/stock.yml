@@ -19,7 +19,7 @@ jobs:
     - name: Generate file 1
       run: |
         mkdir ~/stock
-        cat ~/stock/file1.txt
+        # cat ~/stock/file1.txt
         echo "This is file 1" > ~/stock/file1.txt
 
   setup2:
@@ -35,7 +35,7 @@ jobs:
     - name: Generate file 2
       run: |
         mkdir ~/stock
-        cat ~/stock/file2.txt
+        # cat ~/stock/file2.txt
         echo "This is file 2" > ~/stock/file2.txt
 
   setup3:
