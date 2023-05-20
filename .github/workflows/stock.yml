@@ -104,9 +104,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache/merge_to_stock.py
-          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py') }}
+          key: ${{ runner.os }}-file2-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py') }}
           restore-keys: |
-            ${{ runner.os }}-file1-
+            ${{ runner.os }}-file2-
 
   job3:
     runs-on: ubuntu-latest
@@ -150,7 +150,7 @@ jobs:
           path: |
             /tmp/.buildx-cache/test.py
             /tmp/.buildx-cache/merge_to_stock.py
-          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py','/tmp/.buildx-cache/test.py') }}
+          key: ${{ runner.os }}-files-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py','/tmp/.buildx-cache/test.py') }}
           restore-keys: |
             ${{ runner.os }}-file1-
             ${{ runner.os }}-file2-
