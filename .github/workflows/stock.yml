@@ -84,7 +84,7 @@ jobs:
           cp stock/data/关键指标3.db ~/stock
   gjzb6:
     runs-on: ubuntu-latest
-    steps:      
+    steps:
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
         with:
@@ -127,21 +127,41 @@ jobs:
       - gjzb3
       - gjzb6
     steps:
-    - name: 加载缓存
-      uses: actions/cache@v3
-      with:
-        path: ~/stock
-        key: ${{ runner.os }}-stock-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-stock
-    - name: 合并关键指标
-      env:
-        ENV_MERGE: true
-      run: |
-        cd stock
-        cp -rf ~/stock/* data/
-        python tools/get_latest_gjzb.py
-        cp stock/data/关键指标.db ~/stock
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_MERGE: true
+        run: |
+          cd stock
+          python tools/get_latest_gjzb.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/关键指标.db ~/stock
   cwzb_hk:
     runs-on: ubuntu-latest
     steps:      
@@ -369,26 +389,44 @@ jobs:
       - ggxx
       - ylyc
     steps:
-    - name: 加载缓存
-      uses: actions/cache@v3
-      with:
-        path: ~/stock
-        key: ${{ runner.os }}-stock-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-stock
-    - name: 执行任务
-      run: |
-        cd stock
-        cp -rf ~/stock/* data/
-        python tools/merge_to_stock.py
-    - name: 提交更改
-      run: |
-        cd stock
-        git config core.ignorecase false
-        git config --global credential.helper cache
-        git config --local user.email "eshion@qq.com"
-        git config --local user.name "eshion"
-        git add .
-        git commit -m "$(date '+%Y-%m-%d %H:%M:%S')合并分支数据"
-        git pull
-        git push -f
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          cp -rf ~/stock/* data/
+          python tools/merge_to_stock.py
+      - name: 提交更改
+        run: |
+          cd stock
+          git config core.ignorecase false
+          git config --global credential.helper cache
+          git config --local user.email "eshion@qq.com"
+          git config --local user.name "eshion"
+          git add .
+          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')合并分支数据"
+          git pull
+          git push -f
