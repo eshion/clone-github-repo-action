@@ -36,13 +36,6 @@ jobs:
           python-version: '3.x'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-      - name: 加载缓存
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache/test.py
-          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/test.py') }}
-          restore-keys: |
-            ${{ runner.os }}-file1-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -57,6 +50,13 @@ jobs:
           # python tools/get_latest_gjzb.py
           mkdir -p /tmp/.buildx-cache
           cp ./tools/test.py /tmp/.buildx-cache
+      - name: 缓存
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache/test.py
+          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/test.py') }}
+          restore-keys: |
+            ${{ runner.os }}-file1-
 
 
   job2:
@@ -86,13 +86,6 @@ jobs:
           python-version: '3.x'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-      - name: 加载缓存
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache/merge_to_stock.py
-          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py') }}
-          restore-keys: |
-            ${{ runner.os }}-file1-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -107,6 +100,13 @@ jobs:
           # python tools/get_latest_gjzb.py
           mkdir -p /tmp/.buildx-cache
           cp ./tools/merge_to_stock.py /tmp/.buildx-cache
+      - name: 缓存
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache/merge_to_stock.py
+          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py') }}
+          restore-keys: |
+            ${{ runner.os }}-file1-
 
   job3:
     runs-on: ubuntu-latest
@@ -144,6 +144,16 @@ jobs:
         run: |
           # cd stock
           # pip install -r requirements.txt
+      - name: 加载缓存
+        uses: actions/cache@v2
+        with:
+          path: |
+            /tmp/.buildx-cache/test.py
+            /tmp/.buildx-cache/merge_to_stock.py
+          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py','/tmp/.buildx-cache/test.py') }}
+          restore-keys: |
+            ${{ runner.os }}-file1-
+            ${{ runner.os }}-file2-
       - name: Restore file
         run: |
           cat /tmp/.buildx-cache/test.py
