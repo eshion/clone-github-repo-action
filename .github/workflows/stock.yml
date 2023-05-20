@@ -48,13 +48,12 @@ jobs:
         run: |
           cd stock
           # python tools/get_latest_gjzb.py
-          mkdir -p /tmp/.buildx-cache
-          cp ./tools/test.py /tmp/.buildx-cache
+          cp ./tools/test.py /tmp
       - name: 缓存
         uses: actions/cache@v2
         with:
-          path: /tmp/.buildx-cache/test.py
-          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/test.py') }}
+          path: /tmp/test.py
+          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/test.py') }}
           restore-keys: |
             ${{ runner.os }}-file1-
 
@@ -98,13 +97,12 @@ jobs:
         run: |
           cd stock
           # python tools/get_latest_gjzb.py
-          mkdir -p /tmp/.buildx-cache
-          cp ./tools/merge_to_stock.py /tmp/.buildx-cache
+          cp ./tools/merge_to_stock.py /tmp
       - name: 缓存
         uses: actions/cache@v2
         with:
-          path: /tmp/.buildx-cache/merge_to_stock.py
-          key: ${{ runner.os }}-file2-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py') }}
+          path: /tmp/merge_to_stock.py
+          key: ${{ runner.os }}-file2-${{ hashFiles('/tmp/merge_to_stock.py') }}
           restore-keys: |
             ${{ runner.os }}-file2-
 
@@ -148,13 +146,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            /tmp/.buildx-cache/test.py
-            /tmp/.buildx-cache/merge_to_stock.py
-          key: ${{ runner.os }}-files-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py','/tmp/.buildx-cache/test.py') }}
+            /tmp/test.py
+            /tmp/merge_to_stock.py
+          key: ${{ runner.os }}-files-${{ hashFiles('/tmp/merge_to_stock.py','/tmp/test.py') }}
           restore-keys: |
             ${{ runner.os }}-file1-
             ${{ runner.os }}-file2-
       - name: Restore file
         run: |
-          cat /tmp/.buildx-cache/test.py
-          cat /tmp/.buildx-cache/merge_to_stock.py
+          cat /tmp/test.py
+          cat /tmp/merge_to_stock.py
