@@ -17,7 +17,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/file1.txt
-        key: ${{ runner.os }}-file1-${{ hashFiles('~/file1.txt') }}
+        key: ${{ runner.os }}-file1-
         restore-keys: |
           ${{ runner.os }}-file1-
 
@@ -32,7 +32,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/file2.txt
-        key: ${{ runner.os }}-file2-${{ hashFiles('~/file2.txt') }}
+        key: ${{ runner.os }}-file2-
         restore-keys: |
           ${{ runner.os }}-file2-
 
@@ -49,7 +49,7 @@ jobs:
         path: |
           ~/file1.txt
           ~/file2.txt
-        key: ${{ runner.os }}-files-${{ hashFiles('~/file1.txt','~/file2.txt') }}
+        key: ${{ runner.os }}-file1-
         restore-keys: |
           ${{ runner.os }}-file1-
           ${{ runner.os }}-file2-
