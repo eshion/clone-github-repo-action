@@ -1,158 +1,68 @@
-name: stock
+name: My Workflow
 
-# 触发条件
 on:
   workflow_dispatch:
   # 定时触发，UTC->Beijing 00:00->08:00
   # schedule:
-  #   - cron: '30 16 * * *'
-
+    # - cron: '30 16 * * *'
 jobs:
-    
-  job1:
+  setup1:
     runs-on: ubuntu-latest
-    steps:      
-      - name: 迁出代码
-        uses: eshion/clone-github-repo-action@main
-        with:
-          owner: 'eshion'
-          repository: 'stock'
-          access-token: ${{ secrets.ACCESS_TOKEN }} 
-      - name: 创建分支
-        run: |
-          cd stock
-          git config core.ignorecase false
-          git config --global credential.helper cache
-          git config --local user.email "eshion@qq.com"
-          git config --local user.name "eshion"
-          git checkout -b "关键指标3"
-          git branch --set-upstream-to=origin/main 关键指标3
-          git pull
-          git fetch origin
-          git merge origin/main
-      - name: 安装Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-        env:
-          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-      - name: 设置时区
-        run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          # cd stock
-          # pip install -r requirements.txt
-      - name: 执行任务
-        env:
-          ENV_START: '3'
-        run: |
-          cd stock
-          # python tools/get_latest_gjzb.py
-          cp ./tools/test.py /tmp
-      - name: 缓存
-        uses: actions/cache@v2
-        with:
-          path: /tmp/test.py
-          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/test.py') }}
-          restore-keys: |
-            ${{ runner.os }}-file1-
 
+    steps:
+    - name: Generate file 1
+      run: echo "This is file 1" > /tmp/file1.txt
 
-  job2:
+    - name: Cache file 1
+      uses: actions/cache@v2
+      with:
+        path: /tmp/file1.txt
+        key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/file1.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-file1-
+
+  setup2:
     runs-on: ubuntu-latest
-    steps:      
-      - name: 迁出代码
-        uses: eshion/clone-github-repo-action@main
-        with:
-          owner: 'eshion'
-          repository: 'stock'
-          access-token: ${{ secrets.ACCESS_TOKEN }} 
-      - name: 创建分支
-        run: |
-          cd stock
-          git config core.ignorecase false
-          git config --global credential.helper cache
-          git config --local user.email "eshion@qq.com"
-          git config --local user.name "eshion"
-          git checkout -b "关键指标3"
-          git branch --set-upstream-to=origin/main 关键指标3
-          git pull
-          git fetch origin
-          git merge origin/main
-      - name: 安装Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-        env:
-          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-      - name: 设置时区
-        run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          # cd stock
-          # pip install -r requirements.txt
-      - name: 执行任务
-        env:
-          ENV_START: '3'
-        run: |
-          cd stock
-          # python tools/get_latest_gjzb.py
-          cp ./tools/merge_to_stock.py /tmp
-      - name: 缓存
-        uses: actions/cache@v2
-        with:
-          path: /tmp/merge_to_stock.py
-          key: ${{ runner.os }}-file2-${{ hashFiles('/tmp/merge_to_stock.py') }}
-          restore-keys: |
-            ${{ runner.os }}-file2-
 
-  job3:
+    steps:
+    - name: Generate file 2
+      run: echo "This is file 2" > /tmp/file2.txt
+
+    - name: Cache file 2
+      uses: actions/cache@v2
+      with:
+        path: /tmp/file2.txt
+        key: ${{ runner.os }}-file2-${{ hashFiles('/tmp/file2.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-file2-
+
+  build:
     runs-on: ubuntu-latest
-    needs:
-      - job1
-      - job2
-    steps:      
-      - name: 迁出代码
-        uses: eshion/clone-github-repo-action@main
-        with:
-          owner: 'eshion'
-          repository: 'stock'
-          access-token: ${{ secrets.ACCESS_TOKEN }} 
-      - name: 创建分支
-        run: |
-          cd stock
-          git config core.ignorecase false
-          git config --global credential.helper cache
-          git config --local user.email "eshion@qq.com"
-          git config --local user.name "eshion"
-          git checkout -b "关键指标3"
-          git branch --set-upstream-to=origin/main 关键指标3
-          git pull
-          git fetch origin
-          git merge origin/main
-      - name: 安装Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-        env:
-          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-      - name: 设置时区
-        run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          # cd stock
-          # pip install -r requirements.txt
-      - name: 加载缓存
-        uses: actions/cache@v2
-        with:
-          path: |
-            /tmp/test.py
-            /tmp/merge_to_stock.py
-          key: ${{ runner.os }}-files-${{ hashFiles('/tmp/merge_to_stock.py','/tmp/test.py') }}
-          restore-keys: |
-            ${{ runner.os }}-file1-
-            ${{ runner.os }}-file2-
-      - name: Restore file
-        run: |
-          cat /tmp/test.py
-          cat /tmp/merge_to_stock.py
+
+    steps:
+    - name: Restore files from cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          /tmp/file1.txt
+          /tmp/file2.txt
+        key: ${{ runner.os }}-files-${{ hashFiles('/tmp/file1.txt','/tmp/file2.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-file1-
+          ${{ runner.os }}-file2-
+
+    - name: Read file 1
+      run: |
+        if [ -f /tmp/file1.txt ]; then
+          cat /tmp/file1.txt
+        else
+          echo "File 1 does not exist"
+        fi
+
+    - name: Read file 2
+      run: |
+        if [ -f /tmp/file2.txt ]; then
+          cat /tmp/file2.txt
+        else
+          echo "File 2 does not exist"
+        fi
