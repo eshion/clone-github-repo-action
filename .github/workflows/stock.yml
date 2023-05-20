@@ -53,10 +53,10 @@ jobs:
         env:
           ENV_START: '3'
         run: |
-          # cd stock
+          cd stock
           # python tools/get_latest_gjzb.py
           mkdir -p /tmp/.buildx-cache
-          mv ./tools/test.py /tmp/.buildx-cache
+          cp ./tools/test.py /tmp/.buildx-cache
 
 
   job2:
@@ -103,13 +103,16 @@ jobs:
         env:
           ENV_START: '3'
         run: |
-          # cd stock
+          cd stock
           # python tools/get_latest_gjzb.py
           mkdir -p /tmp/.buildx-cache
-          mv ./tools/merge_to_stock.py /tmp/.buildx-cache
+          cp ./tools/merge_to_stock.py /tmp/.buildx-cache
 
   job3:
     runs-on: ubuntu-latest
+    needs:
+      - job1
+      - job2
     steps:      
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
