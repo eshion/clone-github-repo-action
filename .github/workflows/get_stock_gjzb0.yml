@@ -1,4 +1,4 @@
-name: 更新关键指标3
+name: 更新关键指标0
 
 # 触发条件
 on:
@@ -25,8 +25,8 @@ jobs:
           git config --global credential.helper cache
           git config --local user.email "eshion@qq.com"
           git config --local user.name "eshion"
-          git checkout -b "关键指标3"
-          git branch --set-upstream-to=origin/main 关键指标3
+          git checkout -b "关键指标0"
+          git branch --set-upstream-to=origin/main 关键指标0
           git pull
           git fetch origin
           git merge origin/main
@@ -51,7 +51,7 @@ jobs:
           pip install -r requirements.txt
       - name: 执行任务
         env:
-          ENV_START: '3'
+          ENV_START: '0'
         run: |
           cd stock
           python tools/get_latest_gjzb.py
@@ -63,5 +63,5 @@ jobs:
           git config --local user.email "eshion@qq.com"
           git config --local user.name "eshion"
           git add .
-          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新关键指标3"
-          git push origin "关键指标3"
+          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新关键指标0"
+          git push origin "关键指标0"
