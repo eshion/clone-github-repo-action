@@ -13,29 +13,30 @@ jobs:
     - name: Cache file 1
       uses: actions/cache@v3
       with:
-        path: ~/file1.txt
-        key: ${{ runner.os }}-file1-${{ github.sha }}
+        path: ~/stock
+        key: ${{ runner.os }}-stock-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-file1-
+          ${{ runner.os }}-stock
     - name: Generate file 1
       run: |
-        cat ~/file1.txt
-        echo "This is file 1" > ~/file1.txt
+        mkdir ~/stock
+        cat ~/stock/file1.txt
+        echo "This is file 1" > ~/stock/file1.txt
 
   setup2:
     runs-on: ubuntu-latest
-
-    steps:
-    - name: Generate file 2
-      run: echo "This is file 2" > ~/file2.txt
-
     - name: Cache file 2
       uses: actions/cache@v3
       with:
-        path: ~/file2.txt
-        key: ${{ runner.os }}-file2-${{ github.sha }}
+        path: ~/stock
+        key: ${{ runner.os }}-stock-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-file2-
+          ${{ runner.os }}-stock
+    - name: Generate file 2
+      run: |
+        mkdir ~/stock
+        cat ~/stock/file2.txt
+        echo "This is file 2" > ~/stock/file2.txt
 
   setup3:
     runs-on: ubuntu-latest
@@ -43,21 +44,14 @@ jobs:
       - setup1
       - setup2
     steps:
-    - name: Cache file 1
+    - name: Cache file
       uses: actions/cache@v3
       with:
-        path: ~/file1.txt
-        key: ${{ runner.os }}-file1-${{ github.sha }}
+        path: ~/stock
+        key: ${{ runner.os }}-stock-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-file1-
-    - name: Cache file 2
-      uses: actions/cache@v3
-      with:
-        path: ~/file2.txt
-        key: ${{ runner.os }}-file2-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-file2-
-    - name: read file 1
+          ${{ runner.os }}-stock
+    - name: read file
       run: |
         cat ~/file1.txt
         cat ~/file2.txt
