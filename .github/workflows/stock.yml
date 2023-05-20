@@ -9,7 +9,7 @@ on:
 
 jobs:
     
-  deploy:
+  job1:
     runs-on: ubuntu-latest
     steps:      
       - name: 迁出代码
@@ -17,7 +17,19 @@ jobs:
         with:
           owner: 'eshion'
           repository: 'stock'
-          access-token: ${{ secrets.ACCESS_TOKEN }}      
+          access-token: ${{ secrets.ACCESS_TOKEN }} 
+      - name: 创建分支
+        run: |
+          cd stock
+          git config core.ignorecase false
+          git config --global credential.helper cache
+          git config --local user.email "eshion@qq.com"
+          git config --local user.name "eshion"
+          git checkout -b "关键指标3"
+          git branch --set-upstream-to=origin/main 关键指标3
+          git pull
+          git fetch origin
+          git merge origin/main
       - name: 安装Python
         uses: actions/setup-python@v2
         with:
@@ -27,52 +39,109 @@ jobs:
       - name: 加载缓存
         uses: actions/cache@v2
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/run_in_Actions/requirements.txt') }}
+          path: /tmp/.buildx-cache/test.py
+          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/test.py') }}
           restore-keys: |
-            ${{ runner.os }}-pip-
+            ${{ runner.os }}-file1-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
         run: |
-          cd stock
-          pip install -r requirements.txt
-      - name: 更新盈利预测
+          # cd stock
+          # pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '3'
         run: |
-          cd stock
-          python tools/get_stock_profit_forecast_em.py
-      - name: 更新资产负债表
-        run: |
-          cd stock
-          python tools/get_latest_zcfz.py
-      - name: 更新业绩报表
-        run: |
-          cd stock
-          python tools/get_latest_yjbb.py
-      - name: 更新个股行业信息
-        run: |
-          cd stock
-          python tools/get_stock_individual_info.py
-      - name: 更新历史涨幅
-        run: |
-          cd stock
-          python tools/get_relative_strength.py
-      - name: 更新分红配送
-        run: |
-          cd stock
-          python tools/get_latest_fhps_ths.py
-      # - name: 更新个股指标
-      #   run: |
-      #     cd stock
-      #     python tools/get_stock_lg_indicator.py
-      - name: 提交更改
+          # cd stock
+          # python tools/get_latest_gjzb.py
+          mkdir -p /tmp/.buildx-cache
+          mv ./tools/test.py /tmp/.buildx-cache
+
+
+  job2:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }} 
+      - name: 创建分支
         run: |
           cd stock
           git config core.ignorecase false
           git config --global credential.helper cache
           git config --local user.email "eshion@qq.com"
           git config --local user.name "eshion"
-          git add .
-          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新stock data"
+          git checkout -b "关键指标3"
+          git branch --set-upstream-to=origin/main 关键指标3
           git pull
-          git push -f
+          git fetch origin
+          git merge origin/main
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache/merge_to_stock.py
+          key: ${{ runner.os }}-file1-${{ hashFiles('/tmp/.buildx-cache/merge_to_stock.py') }}
+          restore-keys: |
+            ${{ runner.os }}-file1-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          # cd stock
+          # pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '3'
+        run: |
+          # cd stock
+          # python tools/get_latest_gjzb.py
+          mkdir -p /tmp/.buildx-cache
+          mv ./tools/merge_to_stock.py /tmp/.buildx-cache
+
+  job3:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }} 
+      - name: 创建分支
+        run: |
+          cd stock
+          git config core.ignorecase false
+          git config --global credential.helper cache
+          git config --local user.email "eshion@qq.com"
+          git config --local user.name "eshion"
+          git checkout -b "关键指标3"
+          git branch --set-upstream-to=origin/main 关键指标3
+          git pull
+          git fetch origin
+          git merge origin/main
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          # cd stock
+          # pip install -r requirements.txt
+      - name: Restore file
+        run: |
+          cat /tmp/.buildx-cache/test.py
+          cat /tmp/.buildx-cache/merge_to_stock.py
