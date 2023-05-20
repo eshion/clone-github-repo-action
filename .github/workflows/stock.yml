@@ -18,7 +18,7 @@ jobs:
           ${{ runner.os }}-stock
     - name: Generate file 1
       run: |
-        mkdir ~/stock
+        mkdir -p ~/stock
         # cat ~/stock/file1.txt
         echo "This is file 1" > ~/stock/file1.txt
 
@@ -34,7 +34,7 @@ jobs:
           ${{ runner.os }}-stock
     - name: Generate file 2
       run: |
-        mkdir ~/stock
+        mkdir -p ~/stock
         # cat ~/stock/file2.txt
         echo "This is file 2" > ~/stock/file2.txt
 
