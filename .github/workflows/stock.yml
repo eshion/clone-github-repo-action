@@ -14,7 +14,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/file1.txt
-        key: ${{ runner.os }}-file1-${{ hashFiles('~/file1.txt') }}
+        key: ${{ runner.os }}-file1-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-file1-
     - name: Generate file 1
@@ -33,7 +33,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/file2.txt
-        key: ${{ runner.os }}-file2-${{ hashFiles('~/file2.txt') }}
+        key: ${{ runner.os }}-file2-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-file2-
 
@@ -47,50 +47,17 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/file1.txt
-        key: ${{ runner.os }}-file1-${{ hashFiles('~/file1.txt') }}
+        key: ${{ runner.os }}-file1-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-file1-
     - name: Cache file 2
       uses: actions/cache@v3
       with:
         path: ~/file2.txt
-        key: ${{ runner.os }}-file2-${{ hashFiles('~/file2.txt') }}
+        key: ${{ runner.os }}-file2-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-file2-
     - name: read file 1
       run: |
         cat ~/file1.txt
         cat ~/file2.txt
-  build:
-    runs-on: ubuntu-latest
-    needs:
-      - setup1
-      - setup2
-
-    steps:
-    - name: Restore files from cache
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/file1.txt
-          ~/file2.txt
-        key: ${{ runner.os }}-files-${{ hashFiles('~/file1.txt','~/file2.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-file1-
-          ${{ runner.os }}-file2-
-
-    - name: Read file 1
-      run: |
-        if [ -f ~/file1.txt ]; then
-          cat ~/file1.txt
-        else
-          echo "File 1 does not exist"
-        fi
-
-    - name: Read file 2
-      run: |
-        if [ -f ~/file2.txt ]; then
-          cat ~/file2.txt
-        else
-          echo "File 2 does not exist"
-        fi
