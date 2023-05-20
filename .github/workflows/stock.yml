@@ -53,5 +53,5 @@ jobs:
           ${{ runner.os }}-stock
     - name: read file
       run: |
-        cat ~/file1.txt
-        cat ~/file2.txt
+        cat ~/stock/file1.txt
+        cat ~/stock/file2.txt
