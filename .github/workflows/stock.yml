@@ -6,7 +6,7 @@ on:
   # schedule:
     # - cron: '30 16 * * *'
 jobs:
-  p_资产负债表0:
+  zcfz:
     runs-on: ubuntu-latest
     steps:      
       - name: 迁出代码
@@ -44,7 +44,7 @@ jobs:
         run: |
           mkdir -p ~/stock
           cp stock/data/资产负债表.db ~/stock
-  setup中文:
+  merge:
     runs-on: ubuntu-latest
     needs:
       - p_资产负债表0
