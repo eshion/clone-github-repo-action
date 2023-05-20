@@ -9,17 +9,19 @@ jobs:
   setup1:
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Generate file 1
-      run: echo "This is file 1" > ~/file1.txt
-
     - name: Cache file 1
       uses: actions/cache@v3
       with:
         path: ~/file1.txt
-        key: ${{ runner.os }}-file1-
+        key: ${{ runner.os }}-file1-${{ hashFiles('~/file1.txt') }}
         restore-keys: |
           ${{ runner.os }}-file1-
+
+    steps:
+    - name: Generate file 1
+      run: |
+        cat ~/file1.txt
+        echo "This is file 1" > ~/file1.txt
 
   setup2:
     runs-on: ubuntu-latest
@@ -32,7 +34,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/file2.txt
-        key: ${{ runner.os }}-file2-
+        key: ${{ runner.os }}-file2-${{ hashFiles('~/file2.txt') }}
         restore-keys: |
           ${{ runner.os }}-file2-
 
@@ -49,7 +51,7 @@ jobs:
         path: |
           ~/file1.txt
           ~/file2.txt
-        key: ${{ runner.os }}-file1-
+        key: ${{ runner.os }}-files-${{ hashFiles('~/file1.txt','~/file2.txt') }}
         restore-keys: |
           ${{ runner.os }}-file1-
           ${{ runner.os }}-file2-
