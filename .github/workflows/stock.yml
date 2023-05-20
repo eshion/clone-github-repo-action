@@ -14,7 +14,7 @@ jobs:
       run: echo "This is file 1" > ~/file1.txt
 
     - name: Cache file 1
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/file1.txt
         key: ${{ runner.os }}-file1-${{ hashFiles('~/file1.txt') }}
@@ -29,7 +29,7 @@ jobs:
       run: echo "This is file 2" > ~/file2.txt
 
     - name: Cache file 2
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/file2.txt
         key: ${{ runner.os }}-file2-${{ hashFiles('~/file2.txt') }}
@@ -44,7 +44,7 @@ jobs:
 
     steps:
     - name: Restore files from cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
           ~/file1.txt
