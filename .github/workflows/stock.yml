@@ -9,6 +9,7 @@ jobs:
   setup1:
     runs-on: ubuntu-latest
 
+    steps:
     - name: Cache file 1
       uses: actions/cache@v3
       with:
@@ -16,8 +17,6 @@ jobs:
         key: ${{ runner.os }}-file1-${{ hashFiles('~/file1.txt') }}
         restore-keys: |
           ${{ runner.os }}-file1-
-
-    steps:
     - name: Generate file 1
       run: |
         cat ~/file1.txt
