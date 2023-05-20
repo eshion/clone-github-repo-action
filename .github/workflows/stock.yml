@@ -8,7 +8,6 @@ on:
 jobs:
   setup1:
     runs-on: ubuntu-latest
-
     steps:
     - name: Cache file 1
       uses: actions/cache@v3
@@ -25,6 +24,7 @@ jobs:
 
   setup2:
     runs-on: ubuntu-latest
+    steps:
     - name: Cache file 2
       uses: actions/cache@v3
       with:
