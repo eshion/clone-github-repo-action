@@ -46,13 +46,19 @@ jobs:
     - name: Cache file 1
       uses: actions/cache@v3
       with:
-        path: ~/file1.txt
-        key: ${{ runner.os }}-file1-${{ hashFiles('~/file1.txt') }}
+        path: |
+          ~/file1.txt
+          ~/file2.txt
+        key: |
+          ${{ runner.os }}-file1-${{ hashFiles('~/file1.txt') }}
+          ${{ runner.os }}-file2-${{ hashFiles('~/file2.txt') }}
         restore-keys: |
           ${{ runner.os }}-file1-
-    - name: read file 1
+          ${{ runner.os }}-file2-
+    - name: read file
       run: |
         cat ~/file1.txt
+        cat ~/file2.txt
   build:
     runs-on: ubuntu-latest
     needs:
