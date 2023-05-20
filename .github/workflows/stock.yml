@@ -1,12 +1,12 @@
-name: My Workflow
+name: Stock
 
 on:
   workflow_dispatch:
   # 定时触发，UTC->Beijing 00:00->08:00
-  # schedule:
-    # - cron: '30 16 * * *'
+  schedule:
+    - cron: '30 16 * * *'
 jobs:
-  zcfz:
+  gjzb0:
     runs-on: ubuntu-latest
     steps:      
       - name: 迁出代码
@@ -39,23 +39,356 @@ jobs:
           ENV_START: '0'
         run: |
           cd stock
-          python tools/get_latest_zcfz.py
+          python tools/get_latest_gjzb.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock
-          cp stock/data/资产负债表.db ~/stock
-  merge:
+          cp stock/data/关键指标0.db ~/stock
+  gjzb3:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '3'
+        run: |
+          cd stock
+          python tools/get_latest_gjzb.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/关键指标3.db ~/stock
+  gjzb6:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '6'
+        run: |
+          cd stock
+          python tools/get_latest_gjzb.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/关键指标6.db ~/stock
+  gjzb:
     runs-on: ubuntu-latest
     needs:
-      - zcfz
+      - gjzb0
+      - gjzb3
+      - gjzb6
     steps:
-    - name: Cache file
+    - name: 加载缓存
       uses: actions/cache@v3
       with:
         path: ~/stock
         key: ${{ runner.os }}-stock-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-stock
-    - name: read file
+    - name: 合并关键指标
+      env:
+        ENV_MERGE: true
       run: |
-        ls -al ~/stock
+        cd stock
+        cp -rf ~/stock/* data/
+        python tools/get_latest_gjzb.py
+        cp stock/data/关键指标.db ~/stock
+  cwzb_hk:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          python tools/get_stock_financial_hk_report_em.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/财务指标HK.db ~/stock
+  fhps:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          python tools/get_latest_fhps_ths.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/分红配送.db ~/stock
+  fhps_hk:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          python tools/get_latest_fhps_hk_ths.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/分红配送HK.db ~/stock
+  lszf:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          python tools/get_relative_strength.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/历史涨幅.db ~/stock
+  ggxx:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          python tools/get_stock_individual_info.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/个股信息.db ~/stock
+  ylyc:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          python tools/get_stock_profit_forecast_ths.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/盈利预测.db ~/stock
+  merge:
+    runs-on: ubuntu-latest
+    needs:
+      - gjzb
+      - cwzb_hk
+      - fhps
+      - fhps_hk
+      - lszf
+      - ggxx
+      - ylyc
+    steps:
+    - name: 加载缓存
+      uses: actions/cache@v3
+      with:
+        path: ~/stock
+        key: ${{ runner.os }}-stock-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-stock
+    - name: 执行任务
+      run: |
+        cd stock
+        cp -rf ~/stock/* data/
+        python tools/merge_to_stock.py
+      - name: 提交更改
+        run: |
+          cd stock
+          git config core.ignorecase false
+          git config --global credential.helper cache
+          git config --local user.email "eshion@qq.com"
+          git config --local user.name "eshion"
+          git add .
+          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')合并分支数据"
+          git pull
+          git push -f
