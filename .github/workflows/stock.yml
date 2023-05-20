@@ -47,7 +47,7 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     needs:
-      - p_资产负债表0
+      - zcfz
     steps:
     - name: Cache file
       uses: actions/cache@v3
