@@ -59,6 +59,8 @@ jobs:
           ENV_MERGE: true
         run: |
           cd stock
+          ls -al ~/stock/
+          cp -rf ~/stock/* data/
           python tools/get_latest_gjzb.py
       - name: 移到缓存
         run: |
