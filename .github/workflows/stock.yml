@@ -26,7 +26,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-gjzb0-${{ github.sha }}
+          key: stock-${{ github.run_id }}-gjzb0
           restore-keys: |
             ${{ runner.os }}-stock-gjzb0
       - name: 设置时区
@@ -65,7 +65,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-gjzb3-${{ github.sha }}
+          key: stock-${{ github.run_id }}-gjzb3
           restore-keys: |
             ${{ runner.os }}-stock-gjzb3
       - name: 设置时区
@@ -104,7 +104,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-gjzb6-${{ github.sha }}
+          key: stock-${{ github.run_id }}-gjzb6
           restore-keys: |
             ${{ runner.os }}-stock-gjzb6
       - name: 设置时区
@@ -144,25 +144,24 @@ jobs:
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: stock-${{ github.run_id }}-gjzb0
           restore-keys: ${{ runner.os }}-stock-gjzb0
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: stock-${{ github.run_id }}-gjzb3
           restore-keys: ${{ runner.os }}-stock-gjzb3
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: stock-${{ github.run_id }}-gjzb6
           restore-keys: |
             ${{ runner.os }}-stock-gjzb6
-            ${{ runner.os }}-stock-gjzb
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -180,6 +179,13 @@ jobs:
           rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/关键指标.db ~/stock
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-${{ github.run_id }}-gjzb
+          restore-keys: |
+            ${{ runner.os }}-stock-gjzb
   cwzb_hk:
     runs-on: ubuntu-latest
     steps:      
@@ -200,7 +206,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-cwzb_hk-${{ github.sha }}
+          key: stock-${{ github.run_id }}-cwzb_hk
           restore-keys: |
             ${{ runner.os }}-stock-cwzb_hk
       - name: 设置时区
@@ -237,7 +243,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-fhps-${{ github.sha }}
+          key: stock-${{ github.run_id }}-fhps
           restore-keys: |
             ${{ runner.os }}-stock-fhps
       - name: 设置时区
@@ -274,7 +280,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-fhps_hk-${{ github.sha }}
+          key: stock-${{ github.run_id }}-fhps_hk
           restore-keys: |
             ${{ runner.os }}-stock-fhps_hk
       - name: 设置时区
@@ -311,7 +317,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-lszf-${{ github.sha }}
+          key: stock-${{ github.run_id }}-lszf
           restore-keys: |
             ${{ runner.os }}-stock-lszf
       - name: 设置时区
@@ -348,7 +354,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-ggxx-${{ github.sha }}
+          key: stock-${{ github.run_id }}-ggxx
           restore-keys: |
             ${{ runner.os }}-stock-ggxx
       - name: 设置时区
@@ -385,7 +391,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-ylyc-${{ github.sha }}
+          key: stock-${{ github.run_id }}-ylyc
           restore-keys: |
             ${{ runner.os }}-stock-ylyc
       - name: 设置时区
@@ -427,52 +433,52 @@ jobs:
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-gjzb-${{ github.sha }}
+          key: stock-${{ github.run_id }}-gjzb
           restore-keys: |
             ${{ runner.os }}-stock-gjzb
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-cwzb_hk-${{ github.sha }}
+          key: stock-${{ github.run_id }}-cwzb_hk
           restore-keys: |
             ${{ runner.os }}-stock-cwzb_hk
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-fhps-${{ github.sha }}
+          key: stock-${{ github.run_id }}-fhps
           restore-keys: |
             ${{ runner.os }}-stock-fhps
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-fhps_hk-${{ github.sha }}
+          key: stock-${{ github.run_id }}-fhps_hk
           restore-keys: |
             ${{ runner.os }}-stock-fhps_hk
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-lszf-${{ github.sha }}
+          key: stock-${{ github.run_id }}-lszf
           restore-keys: |
             ${{ runner.os }}-stock-lszf
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-ggxx-${{ github.sha }}
+          key: stock-${{ github.run_id }}-ggxx
           restore-keys: |
             ${{ runner.os }}-stock-ggxx
       - name: 加载缓存
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-ylyc-${{ github.sha }}
+          key: stock-${{ github.run_id }}-ylyc
           restore-keys: |
             ${{ runner.os }}-stock-ylyc
       - name: 设置时区
