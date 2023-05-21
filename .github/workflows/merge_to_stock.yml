@@ -28,49 +28,49 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-gjzb
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-gjzb
           restore-keys: |
             ${{ runner.os }}-stock-gjzb
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-cwzb_hk
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-cwzb_hk
           restore-keys: |
             ${{ runner.os }}-stock-cwzb_hk
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-fhps
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-fhps
           restore-keys: |
             ${{ runner.os }}-stock-fhps
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-fhps_hk
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-fhps_hk
           restore-keys: |
             ${{ runner.os }}-stock-fhps_hk
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-lszf
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-lszf
           restore-keys: |
             ${{ runner.os }}-stock-lszf
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-ggxx
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-ggxx
           restore-keys: |
             ${{ runner.os }}-stock-ggxx
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-ylyc
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-ylyc
           restore-keys: |
             ${{ runner.os }}-stock-ylyc
       - name: 设置时区
