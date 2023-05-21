@@ -53,6 +53,9 @@ jobs:
         path: ~/stock
         key: ${{ runner.os }}-stock-${{ github.sha }}
         restore-keys: ${{ runner.os }}-stock-setup1
+    - name: read file
+      run: |
+        ls -al ~/stock
     - name: Cache file
       uses: actions/cache@v3
       with:
