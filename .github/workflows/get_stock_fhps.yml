@@ -8,7 +8,7 @@ on:
   #   - cron: '30 16 * * *'
 
 jobs:
-fhps:
+  fhps:
     runs-on: ubuntu-latest
     steps:      
       - name: 迁出代码
