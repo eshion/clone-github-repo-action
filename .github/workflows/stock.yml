@@ -144,8 +144,21 @@ jobs:
         with:
           path: ~/stock
           key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-stock-gjzb0
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-stock-gjzb3
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-gjzb6
+            ${{ runner.os }}-stock-gjzb
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -160,6 +173,7 @@ jobs:
           python tools/get_latest_gjzb.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/关键指标.db ~/stock
   cwzb_hk:
@@ -181,9 +195,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-cwzb_hk-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-cwzb_hk
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -217,9 +231,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-fhps-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-fhps
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -253,9 +267,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-fhps_hk-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-fhps_hk
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -289,9 +303,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-lszf-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-lszf
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -325,9 +339,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-ggxx-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-ggxx
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -361,9 +375,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-ylyc-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-ylyc
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -405,9 +419,51 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-gjzb-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-gjzb
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-cwzb_hk-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock-cwzb_hk
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-fhps-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock-fhps
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-fhps_hk-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock-fhps_hk
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-lszf-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock-lszf
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-ggxx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock-ggxx
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: ${{ runner.os }}-stock-ylyc-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stock-ylyc
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -417,7 +473,7 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          cp -rf ~/stock/* data/
+          cp ~/stock/* data/
           python tools/merge_to_stock.py
       - name: 提交更改
         run: |

@@ -87,3 +87,7 @@ jobs:
     - name: read file
       run: |
         ls -al ~/stock/
+        echo "This is file 3" > ~/file3.txt
+        cp -rf ~/file3.txt ~/stock
+        ls -al ~/stock/
+        
