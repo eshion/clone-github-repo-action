@@ -61,5 +61,6 @@ jobs:
         restore-keys: ${{ runner.os }}-stock-setup2
     - name: read file
       run: |
+        ls -al ~/stock
         cat ~/stock/file1.txt
         cat ~/stock/file2.txt
