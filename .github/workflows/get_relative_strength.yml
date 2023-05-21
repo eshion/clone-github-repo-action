@@ -8,5 +8,5 @@ on:
   #   - cron: '30 16 * * *'
 
 jobs:
-  - include: jobs/lszf.yml
+  include: jobs/lszf.yml
   
