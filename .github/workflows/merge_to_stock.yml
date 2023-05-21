@@ -28,51 +28,44 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-gjzb
-          restore-keys: |
-            ${{ runner.os }}-stock-gjzb
+          key: stock-gjzb-${{ github.run_id }}
+          restore-keys: stock-gjzb-
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-cwzb_hk
-          restore-keys: |
-            ${{ runner.os }}-stock-cwzb_hk
+          key: stock-cwzb_hk-${{ github.run_id }}
+          restore-keys: stock-cwzb_hk-
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-fhps
-          restore-keys: |
-            ${{ runner.os }}-stock-fhps
+          key: stock-fhps-${{ github.run_id }}
+          restore-keys: stock-fhps-
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-fhps_hk
-          restore-keys: |
-            ${{ runner.os }}-stock-fhps_hk
+          key: stock-fhps_hk-${{ github.run_id }}
+          restore-keys: stock-fhps_hk-
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-lszf
-          restore-keys: |
-            ${{ runner.os }}-stock-lszf
+          key: stock-lszf-${{ github.run_id }}
+          restore-keys: stock-lszf-
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-ggxx
-          restore-keys: |
-            ${{ runner.os }}-stock-ggxx
+          key: stock-ggxx-${{ github.run_id }}
+          restore-keys: stock-ggxx-
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-ylyc
-          restore-keys: |
-            ${{ runner.os }}-stock-ylyc
+          key: stock-ylyc-${{ github.run_id }}
+          restore-keys: stock-ylyc-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
