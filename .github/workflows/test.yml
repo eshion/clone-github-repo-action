@@ -54,7 +54,7 @@ jobs:
       run: |
         ls -al ~/stock
     - name: Cache file
-      uses: actions/restore@v3
+      uses: actions/cache/restore@v3
       with:
         path: ~/stock
         key: stock-${{ github.run_id }}-setup2
