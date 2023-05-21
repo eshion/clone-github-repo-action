@@ -41,7 +41,7 @@ jobs:
         # cat ~/stock/file2.txt
         echo "This is file 2" > ~/stock/file2.txt
 
-  setup:
+  setup3:
     runs-on: ubuntu-latest
     needs:
       - setup1
@@ -58,8 +58,27 @@ jobs:
       with:
         path: ~/stock
         key: ${{ runner.os }}-stock-${{ github.sha }}
-        restore-keys: ${{ runner.os }}-stock-setup2
+        restore-keys: |
+          ${{ runner.os }}-stock-setup2
+          ${{ runner.os }}-stock-setup
     - name: read file
       run: |
-        cat ~/stock/file1.txt
-        cat ~/stock/file2.txt
+        ls -al ~/stock
+        rm -rf ~/stock
+        mkdir -p ~/stock
+        echo "This is file 3" > ~/stock/file3.txt
+  setup:
+    runs-on: ubuntu-latest
+    needs:
+      - setup3
+    steps:
+    - name: Cache file
+      uses: actions/cache@v3
+      with:
+        path: ~/stock
+        key: ${{ runner.os }}-stock-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-stock-setup
+    - name: read file
+      run: |
+        ls -al ~/stock/
