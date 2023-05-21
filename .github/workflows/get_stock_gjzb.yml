@@ -55,6 +55,7 @@ jobs:
           pip install -r requirements.txt
       - name: 执行任务
         env:
+          ENV_START: '0,6'
           ENV_MERGE: true
         run: |
           cd stock
