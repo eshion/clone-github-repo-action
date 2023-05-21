@@ -28,7 +28,7 @@ jobs:
   #       uses: actions/cache@v3
   #       with:
   #         path: ~/stock
-  #         key: stock-${{ github.run_id }}-gjzb0
+  #         key: stock-${{ github.run_id }}-${{ github.run_attempt }}-gjzb0
   #         restore-keys: |
   #           ${{ runner.os }}-stock-gjzb0
   #     - name: 设置时区
@@ -67,7 +67,7 @@ jobs:
   #       uses: actions/cache@v3
   #       with:
   #         path: ~/stock
-  #         key: stock-${{ github.run_id }}-gjzb3
+  #         key: stock-${{ github.run_id }}-${{ github.run_attempt }}-gjzb3
   #         restore-keys: |
   #           ${{ runner.os }}-stock-gjzb3
   #     - name: 设置时区
@@ -106,7 +106,7 @@ jobs:
   #       uses: actions/cache@v3
   #       with:
   #         path: ~/stock
-  #         key: stock-${{ github.run_id }}-gjzb6
+  #         key: stock-${{ github.run_id }}-${{ github.run_attempt }}-gjzb6
   #         restore-keys: |
   #           ${{ runner.os }}-stock-gjzb6
   #     - name: 设置时区
@@ -149,26 +149,26 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-gjzb
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-gjzb
           restore-keys: |
             ${{ runner.os }}-stock-gjzb
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-gjzb0
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-gjzb0
           restore-keys: ${{ runner.os }}-stock-gjzb0
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-gjzb3
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-gjzb3
           restore-keys: ${{ runner.os }}-stock-gjzb3
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-gjzb6
+          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-gjzb6
           restore-keys: |
             ${{ runner.os }}-stock-gjzb6
       - name: 设置时区
