@@ -15,15 +15,15 @@ jobs:
     - name: Cache file 1
       uses: actions/cache@v3
       with:
-        path: ~/stock
+        path: ~/setup1
         key: ${{ runner.os }}-stock-setup1-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-stock-setup1
     - name: Generate file 1
       run: |
-        mkdir -p ~/stock
-        # cat ~/stock/file1.txt
-        echo "This is file 1" > ~/stock/file1.txt
+        mkdir -p ~/setup1
+        # cat ~/setup1/file1.txt
+        echo "This is file 1" > ~/setup1/file1.txt
 
   setup2:
     runs-on: ubuntu-latest
@@ -31,15 +31,15 @@ jobs:
     - name: Cache file 2
       uses: actions/cache@v3
       with:
-        path: ~/stock
+        path: ~/setup2
         key: ${{ runner.os }}-stock-setup2-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-stock-setup2
     - name: Generate file 2
       run: |
-        mkdir -p ~/stock
-        # cat ~/stock/file2.txt
-        echo "This is file 2" > ~/stock/file2.txt
+        mkdir -p ~/setup2
+        # cat ~/setup2/file2.txt
+        echo "This is file 2" > ~/setup2/file2.txt
 
   setup:
     runs-on: ubuntu-latest
