@@ -52,9 +52,13 @@ jobs:
       with:
         path: ~/stock
         key: ${{ runner.os }}-stock-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-stock-setup1
-          ${{ runner.os }}-stock-setup2
+        restore-keys: ${{ runner.os }}-stock-setup1
+    - name: Cache file
+      uses: actions/cache@v3
+      with:
+        path: ~/stock
+        key: ${{ runner.os }}-stock-${{ github.sha }}
+        restore-keys: ${{ runner.os }}-stock-setup2
     - name: read file
       run: |
         cat ~/stock/file1.txt
