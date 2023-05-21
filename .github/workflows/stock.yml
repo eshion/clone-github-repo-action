@@ -16,11 +16,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -30,10 +34,6 @@ jobs:
             ${{ runner.os }}-stock-gjzb0
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         env:
           ENV_START: '0'
@@ -54,11 +54,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -68,10 +72,6 @@ jobs:
             ${{ runner.os }}-stock-gjzb3
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         env:
           ENV_START: '3'
@@ -92,11 +92,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -106,10 +110,6 @@ jobs:
             ${{ runner.os }}-stock-gjzb6
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         env:
           ENV_START: '6'
@@ -134,11 +134,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -161,10 +165,6 @@ jobs:
             ${{ runner.os }}-stock-gjzb
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         env:
           ENV_MERGE: true
@@ -186,11 +186,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -200,10 +204,6 @@ jobs:
             ${{ runner.os }}-stock-cwzb_hk
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         run: |
           cd stock
@@ -222,11 +222,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -236,10 +240,6 @@ jobs:
             ${{ runner.os }}-stock-fhps
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         run: |
           cd stock
@@ -258,11 +258,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -272,10 +276,6 @@ jobs:
             ${{ runner.os }}-stock-fhps_hk
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         run: |
           cd stock
@@ -294,11 +294,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -308,10 +312,6 @@ jobs:
             ${{ runner.os }}-stock-lszf
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         run: |
           cd stock
@@ -330,11 +330,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -344,10 +348,6 @@ jobs:
             ${{ runner.os }}-stock-ggxx
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         run: |
           cd stock
@@ -366,11 +366,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -380,10 +384,6 @@ jobs:
             ${{ runner.os }}-stock-ylyc
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         run: |
           cd stock
@@ -410,11 +410,15 @@ jobs:
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        run: |
+          cd stock
+          pip install -r requirements.txt
       - name: 加载缓存
         uses: actions/cache@v3
         with:
@@ -466,10 +470,6 @@ jobs:
             ${{ runner.os }}-stock-ylyc
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
-      - name: 安装依赖
-        run: |
-          cd stock
-          pip install -r requirements.txt
       - name: 执行任务
         run: |
           cd stock
