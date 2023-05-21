@@ -50,7 +50,9 @@ jobs:
     - name: Cache file
       uses: actions/cache@v3
       with:
-        path: ~/stock
+        path: |
+          ~/stock/file1.txt
+          ~/stock/file2.txt
         key: ${{ runner.os }}-stock-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-stock
