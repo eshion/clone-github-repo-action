@@ -191,3 +191,4 @@ jobs:
           rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/关键指标.db ~/stock
+          ls -al ~/stock/
