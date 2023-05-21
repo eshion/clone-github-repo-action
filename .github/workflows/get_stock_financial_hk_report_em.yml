@@ -8,8 +8,7 @@ on:
   #   - cron: '30 16 * * *'
 
 jobs:
-    
-  deploy:
+  cwzb_hk:
     runs-on: ubuntu-latest
     steps:      
       - name: 迁出代码
@@ -17,32 +16,20 @@ jobs:
         with:
           owner: 'eshion'
           repository: 'stock'
-          access-token: ${{ secrets.ACCESS_TOKEN }} 
-      - name: 创建分支
-        run: |
-          cd stock
-          git config core.ignorecase false
-          git config --global credential.helper cache
-          git config --local user.email "eshion@qq.com"
-          git config --local user.name "eshion"
-          git checkout -b "财务指标HK"
-          git branch --set-upstream-to=origin/main 财务指标HK
-          git pull
-          git fetch origin
-          git merge origin/main
+          access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
       - name: 加载缓存
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/run_in_Actions/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          path: ~/stock
+          key: stock-cwzb_hk-${{ github.run_id }}
+          restore-keys: stock-cwzb_hk-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -53,13 +40,8 @@ jobs:
         run: |
           cd stock
           python tools/get_stock_financial_hk_report_em.py
-      - name: 提交更改
+      - name: 移到缓存
         run: |
-          cd stock
-          git config core.ignorecase false
-          git config --global credential.helper cache
-          git config --local user.email "eshion@qq.com"
-          git config --local user.name "eshion"
-          git add .
-          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')更新财务指标HK"
-          git push origin "财务指标HK"
+          mkdir -p ~/stock
+          cp stock/data/财务指标HK.db ~/stock
+          ls -al ~/stock
