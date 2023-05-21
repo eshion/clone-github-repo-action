@@ -149,6 +149,13 @@ jobs:
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
       - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-${{ github.run_id }}-gjzb
+          restore-keys: |
+            ${{ runner.os }}-stock-gjzb
+      - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
@@ -187,10 +194,3 @@ jobs:
           rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/关键指标.db ~/stock
-      - name: 加载缓存
-        uses: actions/cache@v3
-        with:
-          path: ~/stock
-          key: stock-${{ github.run_id }}-gjzb
-          restore-keys: |
-            ${{ runner.os }}-stock-gjzb
