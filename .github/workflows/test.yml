@@ -18,7 +18,7 @@ jobs:
         path: ~/stock
         key: ${{ runner.os }}-stock-setup1-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-stock-setup1
+          ${{ runner.os }}-stock
     - name: Generate file 1
       run: |
         mkdir -p ~/stock
@@ -34,7 +34,7 @@ jobs:
         path: ~/stock
         key: ${{ runner.os }}-stock-setup2-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-stock-setup2
+          ${{ runner.os }}-stock
     - name: Generate file 2
       run: |
         mkdir -p ~/stock
@@ -53,8 +53,7 @@ jobs:
         path: ~/stock
         key: ${{ runner.os }}-stock-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-stock-setup1
-          ${{ runner.os }}-stock-setup2
+          ${{ runner.os }}-stock
     - name: read file
       run: |
         cat ~/stock/file1.txt
