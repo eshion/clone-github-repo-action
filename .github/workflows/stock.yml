@@ -473,7 +473,7 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          cp ~/stock/* data/
+          cp -rf ~/stock/* data/
           python tools/merge_to_stock.py
       - name: 提交更改
         run: |
