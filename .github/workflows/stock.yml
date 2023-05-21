@@ -184,7 +184,8 @@ jobs:
           rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/关键指标.db ~/stock
-          ls -al ~/stock/  cwzb_hk:
+          ls -al ~/stock/  
+  cwzb_hk:
     runs-on: ubuntu-latest
     steps:      
       - name: 迁出代码
@@ -399,7 +400,8 @@ jobs:
           rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/分红配送.db ~/stock
-          ls -al ~/stock/  fhps_hk:
+          ls -al ~/stock/  
+  fhps_hk:
     runs-on: ubuntu-latest
     steps:      
       - name: 迁出代码
