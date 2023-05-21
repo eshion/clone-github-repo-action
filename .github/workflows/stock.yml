@@ -25,9 +25,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-gjzb0-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-gjzb0
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -63,9 +63,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-gjzb3-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-gjzb3
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -101,9 +101,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: ${{ runner.os }}-stock-${{ github.sha }}
+          key: ${{ runner.os }}-stock-gjzb6-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-stock
+            ${{ runner.os }}-stock-gjzb6
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
