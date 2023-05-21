@@ -7,8 +7,8 @@ on:
   # schedule:
   #   - cron: '30 16 * * *'
 
-jobs:
-  fhps:
+jobs:  
+  fhps0:
     runs-on: ubuntu-latest
     steps:      
       - name: 迁出代码
@@ -17,12 +17,6 @@ jobs:
           owner: 'eshion'
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
-      - name: 加载缓存
-        uses: actions/cache@v3
-        with:
-          path: ~/stock
-          key: stock-fhps-${{ github.run_id }}
-          restore-keys: stock-fhps-
       - name: 安装Python
         uses: actions/setup-python@v4
         with:
@@ -30,6 +24,12 @@ jobs:
           cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-fhps0-${{ github.run_id }}
+          restore-keys: stock-fhps0-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -37,11 +37,153 @@ jobs:
           cd stock
           pip install -r requirements.txt
       - name: 执行任务
+        env:
+          ENV_START: '0'
         run: |
           cd stock
           python tools/get_latest_fhps_ths.py
       - name: 移到缓存
         run: |
+          mkdir -p ~/stock
+          cp stock/data/分红配送0.db ~/stock
+  fhps3:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-fhps3-${{ github.run_id }}
+          restore-keys: stock-fhps3-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '3'
+        run: |
+          cd stock
+          python tools/get_latest_fhps_ths.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/分红配送3.db ~/stock
+  fhps6:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-fhps6-${{ github.run_id }}
+          restore-keys: stock-fhps6-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '6'
+        run: |
+          cd stock
+          python tools/get_latest_fhps_ths.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/分红配送6.db ~/stock  
+  fhps:
+    runs-on: ubuntu-latest
+    needs:
+      - fhps0
+      - fhps3
+      - fhps6
+    steps:
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-fhps-${{ github.run_id }}
+          restore-keys: stock-fhps-
+      - name: 加载缓存
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-fhps0-${{ github.run_id }}
+          restore-keys: stock-fhps0-
+      - name: 加载缓存
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-fhps3-${{ github.run_id }}
+          restore-keys: stock-fhps3-
+      - name: 加载缓存
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-fhps6-${{ github.run_id }}
+          restore-keys: stock-fhps6-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          # ENV_START: '0,6'
+          ENV_MERGE: true
+        run: |
+          cd stock
+          ls -al ~/stock/
+          cp -rf ~/stock/* data/
+          python tools/get_latest_fhps_ths.py
+      - name: 移到缓存
+        run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/分红配送.db ~/stock
           ls -al ~/stock/
