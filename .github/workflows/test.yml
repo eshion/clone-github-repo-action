@@ -15,7 +15,7 @@ jobs:
     - name: Cache file 1
       uses: actions/cache@v3
       with:
-        path: ~/stock
+        path: ~/stock/file1.txt
         key: ${{ runner.os }}-stock-setup1-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-stock
@@ -31,7 +31,7 @@ jobs:
     - name: Cache file 2
       uses: actions/cache@v3
       with:
-        path: ~/stock
+        path: ~/stock/file2.txt
         key: ${{ runner.os }}-stock-setup2-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-stock
