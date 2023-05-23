@@ -205,9 +205,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-cwzb_hk
-          restore-keys: |
-            ${{ runner.os }}-stock-cwzb_hk
+          key: stock-cwzb_hk-${{ github.run_id }}
+          restore-keys: stock-cwzb_hk-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -421,9 +420,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: stock-${{ github.run_id }}-${{ github.run_attempt }}-fhps_hk
-          restore-keys: |
-            ${{ runner.os }}-stock-fhps_hk
+          key: stock-fhps_hk-${{ github.run_id }}
+          restore-keys: stock-fhps_hk-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
