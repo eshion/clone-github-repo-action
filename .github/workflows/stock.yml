@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   # 定时触发，UTC->Beijing 00:00->08:00
   schedule:
-    - cron: '30 16 * * *'
+    - cron: '30 20 * * *'
 jobs:
   gjzb0:
     runs-on: ubuntu-latest
