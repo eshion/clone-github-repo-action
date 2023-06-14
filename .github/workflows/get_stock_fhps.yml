@@ -41,6 +41,7 @@ jobs:
           ENV_START: '0'
         run: |
           cd stock
+          touch data/分红配送0.db
           python tools/get_latest_fhps_ths.py
       - name: 移到缓存
         run: |
@@ -79,6 +80,7 @@ jobs:
           ENV_START: '3'
         run: |
           cd stock
+          touch data/分红配送3.db
           python tools/get_latest_fhps_ths.py
       - name: 移到缓存
         run: |
@@ -117,6 +119,7 @@ jobs:
           ENV_START: '6'
         run: |
           cd stock
+          touch data/分红配送6.db
           python tools/get_latest_fhps_ths.py
       - name: 移到缓存
         run: |
@@ -180,6 +183,7 @@ jobs:
           cd stock
           ls -al ~/stock/
           cp -rf ~/stock/* data/
+          touch data/分红配送.db
           python tools/get_latest_fhps_ths.py
       - name: 移到缓存
         run: |
