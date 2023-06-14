@@ -213,7 +213,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-lszf6-${{ github.run_id }}
+          key: stock-lszf_hk-${{ github.run_id }}
           restore-keys: stock-lszf_hk-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
