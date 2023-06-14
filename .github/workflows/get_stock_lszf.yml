@@ -8,169 +8,169 @@ on:
   #   - cron: '30 16 * * *'
 
 jobs:
-  # lszf0:
-  #   runs-on: ubuntu-latest
-  #   steps:      
-  #     - name: 迁出代码
-  #       uses: eshion/clone-github-repo-action@main
-  #       with:
-  #         owner: 'eshion'
-  #         repository: 'stock'
-  #         access-token: ${{ secrets.ACCESS_TOKEN }}
-  #     - name: 安装Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.x'
-  #         cache: 'pip'
-  #       env:
-  #         ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-  #     - name: 加载缓存
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ~/stock
-  #         key: stock-lszf0-${{ github.run_id }}
-  #         restore-keys: stock-lszf0-
-  #     - name: 设置时区
-  #       run: sudo timedatectl set-timezone 'Asia/Shanghai'
-  #     - name: 安装依赖
-  #       run: |
-  #         cd stock
-  #         pip install -r requirements.txt
-  #     - name: 执行任务
-  #       env:
-  #         ENV_START: '0'
-  #       run: |
-  #         cd stock
-  #         touch data/历史涨幅0.db
-  #         python tools/get_relative_strength.py
-  #     - name: 移到缓存
-  #       run: |
-  #         mkdir -p ~/stock
-  #         cp stock/data/历史涨幅0.db ~/stock
-  # lszf3:
-  #   runs-on: ubuntu-latest
-  #   steps:      
-  #     - name: 迁出代码
-  #       uses: eshion/clone-github-repo-action@main
-  #       with:
-  #         owner: 'eshion'
-  #         repository: 'stock'
-  #         access-token: ${{ secrets.ACCESS_TOKEN }}
-  #     - name: 安装Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.x'
-  #         cache: 'pip'
-  #       env:
-  #         ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-  #     - name: 加载缓存
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ~/stock
-  #         key: stock-lszf3-${{ github.run_id }}
-  #         restore-keys: stock-lszf3-
-  #     - name: 设置时区
-  #       run: sudo timedatectl set-timezone 'Asia/Shanghai'
-  #     - name: 安装依赖
-  #       run: |
-  #         cd stock
-  #         pip install -r requirements.txt
-  #     - name: 执行任务
-  #       env:
-  #         ENV_START: '3'
-  #       run: |
-  #         cd stock
-  #         touch data/历史涨幅3.db
-  #         python tools/get_relative_strength.py
-  #     - name: 移到缓存
-  #       run: |
-  #         mkdir -p ~/stock
-  #         cp stock/data/历史涨幅3.db ~/stock
-  # lszf6:
-  #   runs-on: ubuntu-latest
-  #   steps:      
-  #     - name: 迁出代码
-  #       uses: eshion/clone-github-repo-action@main
-  #       with:
-  #         owner: 'eshion'
-  #         repository: 'stock'
-  #         access-token: ${{ secrets.ACCESS_TOKEN }}
-  #     - name: 安装Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.x'
-  #         cache: 'pip'
-  #       env:
-  #         ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-  #     - name: 加载缓存
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ~/stock
-  #         key: stock-lszf6-${{ github.run_id }}
-  #         restore-keys: stock-lszf6-
-  #     - name: 设置时区
-  #       run: sudo timedatectl set-timezone 'Asia/Shanghai'
-  #     - name: 安装依赖
-  #       run: |
-  #         cd stock
-  #         pip install -r requirements.txt
-  #     - name: 执行任务
-  #       env:
-  #         ENV_START: '6'
-  #       run: |
-  #         cd stock
-  #         touch data/历史涨幅6.db
-  #         python tools/get_relative_strength.py
-  #     - name: 移到缓存
-  #       run: |
-  #         mkdir -p ~/stock
-  #         cp stock/data/历史涨幅6.db ~/stock
-  # lszf_hk:
-  #   runs-on: ubuntu-latest
-  #   steps:      
-  #     - name: 迁出代码
-  #       uses: eshion/clone-github-repo-action@main
-  #       with:
-  #         owner: 'eshion'
-  #         repository: 'stock'
-  #         access-token: ${{ secrets.ACCESS_TOKEN }}
-  #     - name: 安装Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.x'
-  #         cache: 'pip'
-  #       env:
-  #         ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-  #     - name: 加载缓存
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ~/stock
-  #         key: stock-lszf_hk-${{ github.run_id }}
-  #         restore-keys: stock-lszf_hk-
-  #     - name: 设置时区
-  #       run: sudo timedatectl set-timezone 'Asia/Shanghai'
-  #     - name: 安装依赖
-  #       run: |
-  #         cd stock
-  #         pip install -r requirements.txt
-  #     - name: 执行任务
-  #       env:
-  #         ENV_START: 'hk'
-  #       run: |
-  #         cd stock
-  #         touch data/历史涨幅hk.db
-  #         python tools/get_relative_strength.py
-  #     - name: 移到缓存
-  #       run: |
-  #         mkdir -p ~/stock
-  #         cp stock/data/历史涨幅hk.db ~/stock  
+  lszf0:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-lszf0-${{ github.run_id }}
+          restore-keys: stock-lszf0-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '0'
+        run: |
+          cd stock
+          touch data/历史涨幅0.db
+          python tools/get_relative_strength.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/历史涨幅0.db ~/stock
+  lszf3:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-lszf3-${{ github.run_id }}
+          restore-keys: stock-lszf3-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '3'
+        run: |
+          cd stock
+          touch data/历史涨幅3.db
+          python tools/get_relative_strength.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/历史涨幅3.db ~/stock
+  lszf6:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-lszf6-${{ github.run_id }}
+          restore-keys: stock-lszf6-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '6'
+        run: |
+          cd stock
+          touch data/历史涨幅6.db
+          python tools/get_relative_strength.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/历史涨幅6.db ~/stock
+  lszf_hk:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-lszf_hk-${{ github.run_id }}
+          restore-keys: stock-lszf_hk-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: 'hk'
+        run: |
+          cd stock
+          touch data/历史涨幅hk.db
+          python tools/get_relative_strength.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/历史涨幅hk.db ~/stock  
   lszf:
     runs-on: ubuntu-latest
-    # needs:
-    #   - lszf0
-    #   - lszf3
-    #   - lszf6
-    #   - lszf_hk
+    needs:
+      - lszf0
+      - lszf3
+      - lszf6
+      - lszf_hk
     steps:
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
