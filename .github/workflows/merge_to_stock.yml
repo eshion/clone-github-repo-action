@@ -24,48 +24,60 @@ jobs:
           cache: 'pip'
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-      - name: 加载缓存
+      - name: 加载缓存-gjzb
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
           key: stock-gjzb-${{ github.run_id }}
           restore-keys: stock-gjzb-
-      - name: 加载缓存
+      - name: 加载缓存-cwzb_hk
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
           key: stock-cwzb_hk-${{ github.run_id }}
           restore-keys: stock-cwzb_hk-
-      - name: 加载缓存
+      - name: 加载缓存-fhps
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
           key: stock-fhps-${{ github.run_id }}
           restore-keys: stock-fhps-
-      - name: 加载缓存
+      - name: 加载缓存-fhps_hk
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
           key: stock-fhps_hk-${{ github.run_id }}
           restore-keys: stock-fhps_hk-
-      - name: 加载缓存
+      - name: 加载缓存-lszf
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
           key: stock-lszf-${{ github.run_id }}
           restore-keys: stock-lszf-
-      - name: 加载缓存
+      - name: 加载缓存-ggxx
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
           key: stock-ggxx-${{ github.run_id }}
           restore-keys: stock-ggxx-
-      - name: 加载缓存
+      - name: 加载缓存-ylyc
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
           key: stock-ylyc-${{ github.run_id }}
           restore-keys: stock-ylyc-
+      - name: 加载缓存-yjkb
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-yjkb-${{ github.run_id }}
+          restore-keys: stock-yjkb-
+      - name: 加载缓存-yjyg
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-yjyg-${{ github.run_id }}
+          restore-keys: stock-yjyg-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
