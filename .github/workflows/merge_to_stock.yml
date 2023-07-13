@@ -78,6 +78,12 @@ jobs:
           path: ~/stock
           key: stock-yjyg-${{ github.run_id }}
           restore-keys: stock-yjyg-
+      - name: 加载缓存-jjcc
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-jjcc-${{ github.run_id }}
+          restore-keys: stock-jjcc-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
