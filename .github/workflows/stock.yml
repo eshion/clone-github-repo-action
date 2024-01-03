@@ -9,7 +9,7 @@ jobs:
   gjzb0:
     runs-on: ubuntu-latest
     needs:
-      - ylyc
+      - yjyg
     steps:      
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
@@ -50,7 +50,7 @@ jobs:
   gjzb3:
     runs-on: ubuntu-latest
     needs:
-      - ylyc
+      - yjyg
     steps:      
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
@@ -91,7 +91,7 @@ jobs:
   gjzb6:
     runs-on: ubuntu-latest
     needs:
-      - ylyc
+      - yjyg
     steps:
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
