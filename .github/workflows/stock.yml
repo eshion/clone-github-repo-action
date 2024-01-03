@@ -8,6 +8,8 @@ on:
 jobs:
   gjzb0:
     runs-on: ubuntu-latest
+    needs:
+      - ylyc
     steps:      
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
@@ -47,6 +49,8 @@ jobs:
           cp stock/data/关键指标0.db ~/stock
   gjzb3:
     runs-on: ubuntu-latest
+    needs:
+      - ylyc
     steps:      
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
@@ -86,6 +90,8 @@ jobs:
           cp stock/data/关键指标3.db ~/stock
   gjzb6:
     runs-on: ubuntu-latest
+    needs:
+      - ylyc
     steps:
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
