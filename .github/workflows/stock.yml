@@ -30,6 +30,12 @@ jobs:
           path: ~/stock
           key: stock-gjzb0-${{ github.run_id }}
           restore-keys: stock-gjzb0-
+      - name: 加载缓存-yjyg
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-yjyg-${{ github.run_id }}
+          restore-keys: stock-yjyg-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -71,6 +77,12 @@ jobs:
           path: ~/stock
           key: stock-gjzb3-${{ github.run_id }}
           restore-keys: stock-gjzb3-
+      - name: 加载缓存-yjyg
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-yjyg-${{ github.run_id }}
+          restore-keys: stock-yjyg-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -112,6 +124,12 @@ jobs:
           path: ~/stock
           key: stock-gjzb6-${{ github.run_id }}
           restore-keys: stock-gjzb6-
+      - name: 加载缓存-yjyg
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-yjyg-${{ github.run_id }}
+          restore-keys: stock-yjyg-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
