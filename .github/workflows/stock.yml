@@ -774,6 +774,43 @@ jobs:
           mkdir -p ~/stock
           cp stock/data/盈利预测.db ~/stock
           ls -al ~/stock
+  ylyc_hk:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-ylyc_hk-${{ github.run_id }}
+          restore-keys: stock-ylyc_hk-
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          python tools/get_ylyc_hk.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/盈利预测HK.db ~/stock
+          ls -al ~/stock
   yjkb:
     runs-on: ubuntu-latest
     steps:      
@@ -895,6 +932,7 @@ jobs:
       - lszf
       - ggxx
       - ylyc
+      - ylyc_hk
       - yjkb
       - yjyg
       - jjcc
@@ -954,6 +992,12 @@ jobs:
           path: ~/stock
           key: stock-ylyc-${{ github.run_id }}
           restore-keys: stock-ylyc-
+      - name: 加载缓存-ylyc_hk
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-ylyc_hk-${{ github.run_id }}
+          restore-keys: stock-ylyc_hk-
       - name: 加载缓存-yjkb
         uses: actions/cache/restore@v3
         with:
