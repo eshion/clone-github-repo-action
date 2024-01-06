@@ -66,6 +66,12 @@ jobs:
           path: ~/stock
           key: stock-ylyc-${{ github.run_id }}
           restore-keys: stock-ylyc-
+      - name: 加载缓存-ylyc_hk
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-ylyc_hk-${{ github.run_id }}
+          restore-keys: stock-ylyc_hk-
       - name: 加载缓存-yjkb
         uses: actions/cache/restore@v3
         with:
