@@ -47,6 +47,8 @@ jobs:
           ENV_START: '0'
         run: |
           cd stock
+          ls -al ~/stock/
+          cp -rf ~/stock/* data/
           touch data/关键指标0.db
           python tools/get_latest_gjzb.py
       - name: 移到缓存
@@ -94,6 +96,8 @@ jobs:
           ENV_START: '3'
         run: |
           cd stock
+          ls -al ~/stock/
+          cp -rf ~/stock/* data/
           touch data/关键指标3.db
           python tools/get_latest_gjzb.py
       - name: 移到缓存
@@ -141,6 +145,8 @@ jobs:
           ENV_START: '6'
         run: |
           cd stock
+          ls -al ~/stock/
+          cp -rf ~/stock/* data/
           touch data/关键指标6.db
           python tools/get_latest_gjzb.py
       - name: 移到缓存
