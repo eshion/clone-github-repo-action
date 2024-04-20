@@ -39,7 +39,7 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          python tools/get_stock_individual_info.py
+          python tools/get_latest_ggxx.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock

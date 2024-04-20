@@ -39,7 +39,7 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          python tools/get_stock_profit_forecast_ths.py
+          python tools/get_latest_ylyc.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock

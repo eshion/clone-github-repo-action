@@ -251,7 +251,7 @@ jobs:
         run: |
           cd stock
           touch data/财务指标HK.db
-          python tools/get_cwzb_hk.py
+          python tools/get_latest_cwzb_hk.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock
@@ -510,7 +510,7 @@ jobs:
         run: |
           cd stock
           touch data/历史涨幅0.db
-          python tools/get_relative_strength.py
+          python tools/get_latest_lszf.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock
@@ -549,7 +549,7 @@ jobs:
         run: |
           cd stock
           touch data/历史涨幅3.db
-          python tools/get_relative_strength.py
+          python tools/get_latest_lszf.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock
@@ -588,7 +588,7 @@ jobs:
         run: |
           cd stock
           touch data/历史涨幅6.db
-          python tools/get_relative_strength.py
+          python tools/get_latest_lszf.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock
@@ -627,7 +627,7 @@ jobs:
         run: |
           cd stock
           touch data/历史涨幅hk.db
-          python tools/get_relative_strength.py
+          python tools/get_latest_lszf.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock
@@ -697,7 +697,7 @@ jobs:
           ls -al ~/stock/
           cp -rf ~/stock/* data/
           touch data/历史涨幅.db
-          python tools/get_relative_strength.py
+          python tools/get_latest_lszf.py
       - name: 移到缓存
         run: |
           rm -rf ~/stock
@@ -736,7 +736,7 @@ jobs:
         run: |
           cd stock
           touch data/个股信息.db
-          python tools/get_stock_individual_info.py
+          python tools/get_latest_ggxx.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock
@@ -774,7 +774,7 @@ jobs:
         run: |
           cd stock
           touch data/盈利预测.db
-          python tools/get_stock_profit_forecast_ths.py
+          python tools/get_latest_ylyc.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock
@@ -811,7 +811,7 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          python tools/get_ylyc_hk.py
+          python tools/get_latest_ylyc_hk.py
       - name: 移到缓存
         run: |
           mkdir -p ~/stock
