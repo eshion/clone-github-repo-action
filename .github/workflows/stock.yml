@@ -744,6 +744,8 @@ jobs:
           ls -al ~/stock
   ylyc:
     runs-on: ubuntu-latest
+    needs:
+      - gjzb
     steps:      
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
@@ -751,7 +753,13 @@ jobs:
           owner: 'eshion'
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
-      - name: 加载缓存
+      - name: 加载缓存-gjzb
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-gjzb-${{ github.run_id }}
+          restore-keys: stock-gjzb-
+      - name: 加载缓存-ylyc
         uses: actions/cache@v3
         with:
           path: ~/stock
@@ -782,6 +790,8 @@ jobs:
           ls -al ~/stock
   ylyc_hk:
     runs-on: ubuntu-latest
+    needs:
+      - cwzb_hk
     steps:      
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
@@ -789,7 +799,13 @@ jobs:
           owner: 'eshion'
           repository: 'stock'
           access-token: ${{ secrets.ACCESS_TOKEN }}
-      - name: 加载缓存
+      - name: 加载缓存-cwzb_hk
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-cwzb_hk-${{ github.run_id }}
+          restore-keys: stock-cwzb_hk-
+      - name: 加载缓存-ylyc_hk
         uses: actions/cache@v3
         with:
           path: ~/stock
