@@ -42,6 +42,7 @@ jobs:
           python tools/get_latest_yjkb.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/业绩快报.db ~/stock
           ls -al ~/stock

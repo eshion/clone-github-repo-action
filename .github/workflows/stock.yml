@@ -53,6 +53,7 @@ jobs:
           python tools/get_latest_gjzb.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/关键指标0.db ~/stock
   gjzb3:
@@ -102,6 +103,7 @@ jobs:
           python tools/get_latest_gjzb.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/关键指标3.db ~/stock
   gjzb6:
@@ -151,6 +153,7 @@ jobs:
           python tools/get_latest_gjzb.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/关键指标6.db ~/stock  
   gjzb:
@@ -254,6 +257,7 @@ jobs:
           python tools/get_latest_cwzb_hk.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/财务指标HK.db ~/stock
   fhps0:
@@ -293,6 +297,7 @@ jobs:
           python tools/get_latest_fhps_ths.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/分红配送0.db ~/stock
   fhps3:
@@ -332,6 +337,7 @@ jobs:
           python tools/get_latest_fhps_ths.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/分红配送3.db ~/stock
   fhps6:
@@ -371,6 +377,7 @@ jobs:
           python tools/get_latest_fhps_ths.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/分红配送6.db ~/stock  
   fhps:
@@ -474,6 +481,7 @@ jobs:
           python tools/get_latest_fhps_hk_ths.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/分红配送HK.db ~/stock
   lszf0:
@@ -513,6 +521,7 @@ jobs:
           python tools/get_latest_lszf.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/历史涨幅0.db ~/stock
   lszf3:
@@ -552,6 +561,7 @@ jobs:
           python tools/get_latest_lszf.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/历史涨幅3.db ~/stock
   lszf6:
@@ -591,6 +601,7 @@ jobs:
           python tools/get_latest_lszf.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/历史涨幅6.db ~/stock
   lszf_hk:
@@ -630,6 +641,7 @@ jobs:
           python tools/get_latest_lszf.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/历史涨幅hk.db ~/stock  
   lszf:
@@ -739,6 +751,7 @@ jobs:
           python tools/get_latest_ggxx.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/个股信息.db ~/stock
           ls -al ~/stock
@@ -785,6 +798,7 @@ jobs:
           python tools/get_latest_ylyc.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/盈利预测.db ~/stock
           ls -al ~/stock
@@ -830,6 +844,7 @@ jobs:
           python tools/get_latest_ylyc_hk.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/盈利预测HK.db ~/stock
           ls -al ~/stock
@@ -867,6 +882,7 @@ jobs:
           python tools/get_latest_yjkb.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/业绩快报.db ~/stock
           ls -al ~/stock
@@ -904,6 +920,7 @@ jobs:
           python tools/get_latest_yjyg.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/业绩预告.db ~/stock
           ls -al ~/stock
@@ -941,6 +958,7 @@ jobs:
           python tools/get_latest_jjcc.py
       - name: 移到缓存
         run: |
+          rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/基金持仓.db ~/stock
           ls -al ~/stock
