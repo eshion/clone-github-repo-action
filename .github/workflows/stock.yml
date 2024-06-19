@@ -716,9 +716,9 @@ jobs:
           mkdir -p ~/stock
           cp stock/data/历史涨幅.db ~/stock
           ls -al ~/stock/
-  ggxx:
-    runs-on: ubuntu-latest
-    steps:      
+  # ggxx:
+  #   runs-on: ubuntu-latest
+  #   steps:      
       # - name: 迁出代码
       #   uses: eshion/clone-github-repo-action@main
       #   with:
@@ -970,7 +970,7 @@ jobs:
       - fhps
       - fhps_hk
       - lszf
-      - ggxx
+      # - ggxx
       - ylyc
       - ylyc_hk
       - yjkb
