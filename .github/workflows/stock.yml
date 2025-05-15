@@ -8,6 +8,7 @@ on:
 jobs:
   gjzb:
     needs: yjyg
+    secrets: inherit
     uses: ./.github/workflows/get_stock_gjzb.yml
   cwzb_hk:
     uses: ./.github/workflows/get_stock_cwzb_hk.yml

@@ -3,6 +3,10 @@ name: 更新关键指标
 # 触发条件
 on:
   workflow_call:
+    secrets:
+      ACCESS_TOKEN:
+        required: true
+        description: 'GitHub Access Token'
   workflow_dispatch:
 
 jobs:  
