@@ -3,6 +3,7 @@ name: 更新财务指标HK
 # 触发条件
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   cwzb_hk:

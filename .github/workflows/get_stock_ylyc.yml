@@ -3,6 +3,7 @@ name: 更新盈利预测
 # 触发条件
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   ylyc:

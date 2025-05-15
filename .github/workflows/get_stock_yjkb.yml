@@ -3,6 +3,7 @@ name: 更新业绩快报
 # 触发条件
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   yjkb:

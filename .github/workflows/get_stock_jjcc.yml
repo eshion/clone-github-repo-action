@@ -3,6 +3,7 @@ name: 更新基金持仓
 # 触发条件
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   jjcc:
