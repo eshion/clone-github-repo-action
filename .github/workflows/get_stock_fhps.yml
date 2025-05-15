@@ -2,10 +2,7 @@ name: 更新分红配送
 
 # 触发条件
 on:
-  workflow_dispatch:
-  # 定时触发，UTC->Beijing 00:00->08:00
-  # schedule:
-  #   - cron: '30 16 * * *'
+  workflow_call:
 
 jobs:  
   fhps0:
@@ -125,12 +122,52 @@ jobs:
         run: |
           mkdir -p ~/stock
           cp stock/data/分红配送6.db ~/stock  
+  fhps8:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-fhps8-${{ github.run_id }}
+          restore-keys: stock-fhps8-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '8'
+        run: |
+          cd stock
+          touch data/分红配送8.db
+          python tools/get_latest_fhps_ths.py
+      - name: 移到缓存
+        run: |
+          mkdir -p ~/stock
+          cp stock/data/分红配送8.db ~/stock  
   fhps:
     runs-on: ubuntu-latest
     needs:
       - fhps0
       - fhps3
       - fhps6
+      - fhps8
     steps:
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
@@ -169,6 +206,12 @@ jobs:
           path: ~/stock
           key: stock-fhps6-${{ github.run_id }}
           restore-keys: stock-fhps6-
+      - name: 加载缓存
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-fhps8-${{ github.run_id }}
+          restore-keys: stock-fhps8-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖

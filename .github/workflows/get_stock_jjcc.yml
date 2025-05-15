@@ -2,10 +2,7 @@ name: 更新基金持仓
 
 # 触发条件
 on:
-  workflow_dispatch:
-  # 定时触发，UTC->Beijing 00:00->08:00
-  # schedule:
-  #   - cron: '30 16 * * *'
+  workflow_call:
 
 jobs:
   jjcc:

@@ -2,10 +2,7 @@ name: 更新历史涨幅
 
 # 触发条件
 on:
-  workflow_dispatch:
-  # 定时触发，UTC->Beijing 00:00->08:00
-  # schedule:
-  #   - cron: '30 16 * * *'
+  workflow_call:
 
 jobs:
   lszf0:
@@ -128,6 +125,46 @@ jobs:
           rm -rf ~/stock
           mkdir -p ~/stock
           cp stock/data/历史涨幅6.db ~/stock
+  lszf8:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: 'eshion'
+          repository: 'stock'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+        env:
+          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-lszf8-${{ github.run_id }}
+          restore-keys: stock-lszf8-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        env:
+          ENV_START: '8'
+        run: |
+          cd stock
+          touch data/历史涨幅8.db
+          python tools/get_latest_lszf.py
+      - name: 移到缓存
+        run: |
+          rm -rf ~/stock
+          mkdir -p ~/stock
+          cp stock/data/历史涨幅8.db ~/stock
   lszf_hk:
     runs-on: ubuntu-latest
     steps:      
@@ -174,6 +211,7 @@ jobs:
       - lszf0
       - lszf3
       - lszf6
+      - lszf8
       - lszf_hk
     steps:
       - name: 迁出代码
@@ -213,6 +251,12 @@ jobs:
           path: ~/stock
           key: stock-lszf6-${{ github.run_id }}
           restore-keys: stock-lszf6-
+      - name: 加载缓存
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-lszf8-${{ github.run_id }}
+          restore-keys: stock-lszf8-
       - name: 加载缓存
         uses: actions/cache/restore@v3
         with:
