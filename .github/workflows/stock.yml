@@ -11,28 +11,39 @@ jobs:
     secrets: inherit
     uses: ./.github/workflows/get_stock_gjzb.yml
   cwzb_hk:
+    secrets: inherit
     uses: ./.github/workflows/get_stock_cwzb_hk.yml
   fhps:
+    secrets: inherit
     uses: ./.github/workflows/get_stock_fhps.yml
   fhps_hk:
+    secrets: inherit
     uses: ./.github/workflows/get_stock_fhps_hk.yml
   lszf:
+    secrets: inherit
     uses: ./.github/workflows/get_stock_lszf.yml
   ggxx:
+    secrets: inherit
     uses: ./.github/workflows/get_stock_ggxx.yml
   ylyc:
     needs: gjzb
+    secrets: inherit
     uses: ./.github/workflows/get_stock_ylyc.yml
   ylyc_hk:
     needs: cwzb_hk
+    secrets: inherit
     uses: ./.github/workflows/get_stock_ylyc_hk.yml
   yjkb:
+    secrets: inherit
     uses: ./.github/workflows/get_stock_yjkb.yml
   yjyg:
+    secrets: inherit
     uses: ./.github/workflows/get_stock_yjyg.yml
   jjcc:
+    secrets: inherit
     uses: ./.github/workflows/get_stock_jjcc.yml
   merge:
+    secrets: inherit
     needs:
       - gjzb
       - cwzb_hk
