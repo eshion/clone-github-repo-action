@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  yjyg:
+  yjbb_em:
     runs-on: ubuntu-latest
     steps:
       - name: 迁出代码

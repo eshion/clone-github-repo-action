@@ -1,4 +1,4 @@
-name: 更新业绩预告_em
+name: 更新资产负债_em
 
 # 触发条件
 on:
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  yjyg_em:
+  zcfz_em:
     runs-on: ubuntu-latest
     steps:
       - name: 迁出代码
@@ -23,8 +23,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
-          key: stock-yjyg_em-${{ github.run_id }}
-          restore-keys: stock-yjyg_em-
+          key: stock-zcfz_em-${{ github.run_id }}
+          restore-keys: stock-zcfz_em-
       - name: 安装Python
         uses: actions/setup-python@v4
         with:
@@ -41,10 +41,10 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          python tools/get_yjyg_em.py
+          python tools/get_zcfz_em.py
       - name: 移到缓存
         run: |
           rm -rf ~/stock
           mkdir -p ~/stock
-          cp stock/data/yjyg_em.db ~/stock
+          cp stock/data/zcfz_em.db ~/stock
           ls -al ~/stock
