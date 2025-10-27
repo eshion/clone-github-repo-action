@@ -1,0 +1,50 @@
+name: 更新分红配送_em
+
+# 触发条件
+on:
+  workflow_call:
+    secrets:
+      ACCESS_TOKEN:
+        required: true
+        description: "GitHub Access Token"
+  workflow_dispatch:
+
+jobs:
+  fhps_em:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: "eshion"
+          repository: "stock"
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-fhps_em-${{ github.run_id }}
+          restore-keys: stock-fhps_em-
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+          cache: "pip"
+        env:
+          ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          python tools/get_fhps_em.py
+      - name: 移到缓存
+        run: |
+          rm -rf ~/stock
+          mkdir -p ~/stock
+          cp stock/data/fhps_em.db ~/stock
+          ls -al ~/stock
