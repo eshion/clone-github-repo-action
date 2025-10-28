@@ -1,0 +1,105 @@
+name: 合并数据到本地
+
+# 触发条件
+on:
+  workflow_call:
+    secrets:
+      ACCESS_TOKEN:
+        required: true
+        description: "GitHub Access Token"
+  workflow_dispatch:
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: "eshion"
+          repository: "stock"
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+          cache: "pip"
+        env:
+          ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
+      - name: 加载缓存-fhps_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-fhps_em-${{ github.run_id }}
+          restore-keys: stock-fhps_em-
+      - name: 加载缓存-jjcc_cnf
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-jjcc_cnf-${{ github.run_id }}
+          restore-keys: stock-jjcc_cnf-
+      - name: 加载缓存-yjbb_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-yjbb_em-${{ github.run_id }}
+          restore-keys: stock-yjbb_em-
+      - name: 加载缓存-yjkb_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-yjkb_em-${{ github.run_id }}
+          restore-keys: stock-yjkb_em-
+      - name: 加载缓存-yjyg_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-yjyg_em-${{ github.run_id }}
+          restore-keys: stock-yjyg_em-
+      - name: 加载缓存-ggxx
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-ggxx-${{ github.run_id }}
+          restore-keys: stock-ggxx-
+      - name: 加载缓存-yjyg_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-yjyg_em-${{ github.run_id }}
+          restore-keys: stock-yjyg_em-
+      - name: 加载缓存-ylyc_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-ylyc_em-${{ github.run_id }}
+          restore-keys: stock-ylyc_em-
+      - name: 加载缓存-zcfz_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-zcfz_em-${{ github.run_id }}
+          restore-keys: stock-zcfz_em-
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          ls -al ~/stock/
+          cp -rf ~/stock/* data/
+          # python tools/merge_all_em.py
+      - name: 提交更改
+        run: |
+          cd stock
+          git config core.ignorecase false
+          git config --global credential.helper cache
+          git config --local user.email "eshion@qq.com"
+          git config --local user.name "eshion"
+          git add .
+          git commit -m "$(date '+%Y-%m-%d %H:%M:%S')合并分支数据"
+          git pull
+          git push -f
