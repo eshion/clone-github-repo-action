@@ -1,0 +1,41 @@
+name: Stock_em
+on:
+  workflow_dispatch:
+  # 定时触发，UTC->Beijing 增加8小时得到北京时间
+  # * 1 * * * -> 09:00
+  schedule:
+    - cron: "26 19 * * *"
+jobs:
+  fhps_em:
+    needs: yjyg
+    secrets: inherit
+    uses: ./.github/workflows/get_fhps_em.yml
+  jjcc_cnf:
+    secrets: inherit
+    uses: ./.github/workflows/get_jjcc_cnf.yml
+  yjbb_em:
+    secrets: inherit
+    uses: ./.github/workflows/get_yjbb_em.yml
+  yjkb_em:
+    secrets: inherit
+    uses: ./.github/workflows/get_yjkb_em.yml
+  yjyg_em:
+    secrets: inherit
+    uses: ./.github/workflows/get_yjyg_em.yml
+  ylyc_em:
+    secrets: inherit
+    uses: ./.github/workflows/get_ylyc_em.yml
+  zcfz_em:
+    secrets: inherit
+    uses: ./.github/workflows/get_zcfz_em.yml
+  merge_em:
+    secrets: inherit
+    needs:
+      - fhps_em
+      - jjcc_cnf
+      - yjbb_em
+      - yjkb_em
+      - yjyg_em
+      - ylyc_em
+      - zcfz_em
+    uses: ./.github/workflows/merge_all_em.yml
