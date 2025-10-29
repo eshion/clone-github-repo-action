@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
   # 定时触发，UTC->Beijing 增加8小时得到北京时间
   # * 1 * * * -> 09:00
-  schedule:
-    - cron: '26 19 * * *'
+  # schedule:
+  #   - cron: '26 19 * * *'
 jobs:
   gjzb:
     needs: yjyg
