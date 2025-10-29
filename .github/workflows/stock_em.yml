@@ -7,7 +7,6 @@ on:
     - cron: "26 19 * * *"
 jobs:
   fhps_em:
-    needs: yjyg
     secrets: inherit
     uses: ./.github/workflows/get_fhps_em.yml
   jjcc_cnf:
