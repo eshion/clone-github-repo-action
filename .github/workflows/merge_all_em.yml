@@ -90,7 +90,7 @@ jobs:
         run: |
           cd stock
           ls -al ~/stock/
-          cp -rf ~/stock/* data/
+          # cp -rf ~/stock/* data/
           python tools/merge_all_em.py
       - name: 提交更改
         run: |
