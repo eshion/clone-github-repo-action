@@ -88,10 +88,10 @@ jobs:
           cp -rf ~/stock/* cache/
           ls -al cache/
           python tools/merge_all_em.py
-          rm -rf cache
       - name: 提交更改
         run: |
           cd stock
+          rm -rf cache
           git config core.ignorecase false
           git config --global credential.helper cache
           git config --local user.email "eshion@qq.com"
