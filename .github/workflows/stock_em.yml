@@ -6,9 +6,6 @@ on:
   schedule:
     - cron: "26 19 * * *"
 jobs:
-  ggxx_em:
-    secrets: inherit
-    uses: ./.github/workflows/get_stock_ggxx.yml
   fhps_em:
     secrets: inherit
     uses: ./.github/workflows/get_fhps_em.yml
@@ -33,7 +30,6 @@ jobs:
   merge_em:
     secrets: inherit
     needs:
-      - ggxx_em
       - fhps_em
       - jjcc_cnf
       - yjbb_em
