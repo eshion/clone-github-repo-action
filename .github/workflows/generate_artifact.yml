@@ -68,7 +68,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: data-files
+          name: cache
           path: ~/stock
           retention-days: 1
           if-no-files-found: error
