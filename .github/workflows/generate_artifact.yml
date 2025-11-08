@@ -13,12 +13,6 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
-      - name: 迁出代码
-        uses: eshion/clone-github-repo-action@main
-        with:
-          owner: "eshion"
-          repository: "stock"
-          access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
         uses: actions/setup-python@v4
         with:
@@ -29,59 +23,59 @@ jobs:
       - name: 加载缓存-fhps_em
         uses: actions/cache/restore@v3
         with:
-          path: ~/stock
+          path: ~/data
           key: stock-fhps_em-${{ github.run_id }}
           restore-keys: stock-fhps_em-
       - name: 加载缓存-jjcc_cnf
         uses: actions/cache/restore@v3
         with:
-          path: ~/stock
+          path: ~/data
           key: stock-jjcc_cnf-${{ github.run_id }}
           restore-keys: stock-jjcc_cnf-
       - name: 加载缓存-yjbb_em
         uses: actions/cache/restore@v3
         with:
-          path: ~/stock
+          path: ~/data
           key: stock-yjbb_em-${{ github.run_id }}
           restore-keys: stock-yjbb_em-
       - name: 加载缓存-yjkb_em
         uses: actions/cache/restore@v3
         with:
-          path: ~/stock
+          path: ~/data
           key: stock-yjkb_em-${{ github.run_id }}
           restore-keys: stock-yjkb_em-
       - name: 加载缓存-yjyg_em
         uses: actions/cache/restore@v3
         with:
-          path: ~/stock
+          path: ~/data
           key: stock-yjyg_em-${{ github.run_id }}
           restore-keys: stock-yjyg_em-
       - name: 加载缓存-yjyg_em
         uses: actions/cache/restore@v3
         with:
-          path: ~/stock
+          path: ~/data
           key: stock-yjyg_em-${{ github.run_id }}
           restore-keys: stock-yjyg_em-
       - name: 加载缓存-ylyc_em
         uses: actions/cache/restore@v3
         with:
-          path: ~/stock
+          path: ~/data
           key: stock-ylyc_em-${{ github.run_id }}
           restore-keys: stock-ylyc_em-
       - name: 加载缓存-zcfz_em
         uses: actions/cache/restore@v3
         with:
-          path: ~/stock
+          path: ~/data
           key: stock-zcfz_em-${{ github.run_id }}
           restore-keys: stock-zcfz_em-
       - name: 设置时区
         run: |
           sudo timedatectl set-timezone 'Asia/Shanghai'
-          ls -alh ~/stock/
+          ls -alh ~/data/
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: data-files
-          path: ~/stock/
+          path: ~/data/
           retention-days: 1
           if-no-files-found: error
