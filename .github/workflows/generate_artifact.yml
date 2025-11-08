@@ -43,12 +43,6 @@ jobs:
           path: ./data
           key: stock-yjyg_em-${{ github.run_id }}
           restore-keys: stock-yjyg_em-
-      - name: 加载缓存-ggxx
-        uses: actions/cache/restore@v3
-        with:
-          path: ./data
-          key: stock-ggxx-${{ github.run_id }}
-          restore-keys: stock-ggxx-
       - name: 加载缓存-yjyg_em
         uses: actions/cache/restore@v3
         with:
