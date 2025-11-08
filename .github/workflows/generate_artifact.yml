@@ -13,6 +13,12 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: "eshion"
+          repository: "stock"
+          access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 安装Python
         uses: actions/setup-python@v4
         with:
