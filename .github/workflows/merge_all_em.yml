@@ -74,6 +74,12 @@ jobs:
           path: ~/stock
           key: stock-zcfz_em-${{ github.run_id }}
           restore-keys: stock-zcfz_em-
+      - name: 加载缓存-ggxx_hk_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-ggxx_hk_em-${{ github.run_id }}
+          restore-keys: stock-ggxx_hk_em-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
@@ -83,7 +89,6 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          ls -al ~/stock/
           mkdir -p cache
           cp -rf ~/stock/* cache/
           ls -al cache/
