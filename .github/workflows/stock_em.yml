@@ -27,9 +27,9 @@ jobs:
   zcfz_em:
     secrets: inherit
     uses: ./.github/workflows/get_zcfz_em.yml
-  ggxx_hk_em:
+  ggxx_hk_sina:
     secrets: inherit
-    uses: ./.github/workflows/get_ggxx_hk_em.yml
+    uses: ./.github/workflows/get_ggxx_hk_sina.yml
   merge_em:
     secrets: inherit
     needs:
@@ -40,5 +40,5 @@ jobs:
       - yjyg_em
       - ylyc_em
       - zcfz_em
-      - ggxx_hk_em
+      - ggxx_hk_sina
     uses: ./.github/workflows/merge_all_em.yml

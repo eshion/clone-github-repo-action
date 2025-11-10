@@ -74,12 +74,12 @@ jobs:
           path: ~/stock
           key: stock-zcfz_em-${{ github.run_id }}
           restore-keys: stock-zcfz_em-
-      - name: 加载缓存-ggxx_hk_em
+      - name: 加载缓存-ggxx_hk_sina
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-ggxx_hk_em-${{ github.run_id }}
-          restore-keys: stock-ggxx_hk_em-
+          key: stock-ggxx_hk_sina-${{ github.run_id }}
+          restore-keys: stock-ggxx_hk_sina-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
