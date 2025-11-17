@@ -8,7 +8,6 @@ on:
         type: string
         description: "起始环境变量0-17"
         required: false
-        default: "[0]"
     secrets:
       ACCESS_TOKEN:
         required: true
@@ -18,12 +17,6 @@ on:
 jobs:
   yjbb_em:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false # 单个缓存加载失败不影响其他
-      max-parallel: 6 # 控制并行数量（避免资源占用过高）
-      matrix:
-        # 动态生成序号列表：有 index 则单个，无则 0-17
-        index: ${{ fromJSON(inputs.index) }}
     steps:
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
@@ -33,16 +26,144 @@ jobs:
           access-token: ${{ secrets.ACCESS_TOKEN }}
       - name: 加载缓存
         uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
         with:
           path: ~/stock
           key: stock-yjbb_em-${{ github.run_id }}
           restore-keys: stock-yjbb_em-
-      - name: 加载缓存${{ inputs.index }}
+      - name: 加载缓存0
         uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
         with:
           path: ~/stock
-          key: stock-yjbb_em${{ matrix.index }}-${{ github.run_id }}
-          restore-keys: stock-yjbb_em${{ matrix.index }}-
+          key: stock-yjbb_em0-${{ github.run_id }}
+          restore-keys: stock-yjbb_em0-
+      - name: 加载缓存1
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em1-${{ github.run_id }}
+          restore-keys: stock-yjbb_em1-
+      - name: 加载缓存2
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em2-${{ github.run_id }}
+          restore-keys: stock-yjbb_em2-
+      - name: 加载缓存3
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em3-${{ github.run_id }}
+          restore-keys: stock-yjbb_em3-
+      - name: 加载缓存4
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em4-${{ github.run_id }}
+          restore-keys: stock-yjbb_em4-
+      - name: 加载缓存5
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em5-${{ github.run_id }}
+          restore-keys: stock-yjbb_em5-
+      - name: 加载缓存6
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em6-${{ github.run_id }}
+          restore-keys: stock-yjbb_em6-
+      - name: 加载缓存7
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em7-${{ github.run_id }}
+          restore-keys: stock-yjbb_em7-
+      - name: 加载缓存8
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em8-${{ github.run_id }}
+          restore-keys: stock-yjbb_em8-
+      - name: 加载缓存9
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em9-${{ github.run_id }}
+          restore-keys: stock-yjbb_em9-
+      - name: 加载缓存10
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em10-${{ github.run_id }}
+          restore-keys: stock-yjbb_em10-
+      - name: 加载缓存11
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em11-${{ github.run_id }}
+          restore-keys: stock-yjbb_em11-
+      - name: 加载缓存12
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em12-${{ github.run_id }}
+          restore-keys: stock-yjbb_em12-
+      - name: 加载缓存13
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em13-${{ github.run_id }}
+          restore-keys: stock-yjbb_em13-
+      - name: 加载缓存14
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em14-${{ github.run_id }}
+          restore-keys: stock-yjbb_em14-
+      - name: 加载缓存15
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em15-${{ github.run_id }}
+          restore-keys: stock-yjbb_em15-
+      - name: 加载缓存16
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em16-${{ github.run_id }}
+          restore-keys: stock-yjbb_em16-
+      - name: 加载缓存17
+        uses: actions/cache@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em17-${{ github.run_id }}
+          restore-keys: stock-yjbb_em17-
+      - name: 加载缓存${{ inputs.index }}
+        uses: actions/cache@v3
+        if: ${{ inputs.index != '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em${{ inputs.index }}-${{ github.run_id }}
+          restore-keys: stock-yjbb_em${{ inputs.index }}-
       - name: 安装Python
         uses: actions/setup-python@v4
         with:
