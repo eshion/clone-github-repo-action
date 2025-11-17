@@ -28,7 +28,11 @@ jobs:
       max-parallel: 6 # 控制并行数量（避免资源占用过高）
       matrix:
         # 动态生成序号列表：有 index 则单个，无则 0-17
-        index: ${{ inputs.env_merge?fromJSON('["' + inputs.env_start + '"]'):fromJSON('[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]') }}
+        index: ${{
+          inputs.env_merge ?  # 条件 + 空格 + ?
+          fromJSON('["' + inputs.env_start + '"]') :
+          fromJSON('[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]')
+        }}
     steps:
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
