@@ -24,12 +24,6 @@ jobs:
           owner: "eshion"
           repository: "stock"
           access-token: ${{ secrets.ACCESS_TOKEN }}
-      - name: 保存缓存
-        uses: actions/cache/save@v3
-        if: ${{ inputs.index == '' }}
-        with:
-          path: ~/stock
-          key: stock-yjbb_em-${{ github.run_id }}
       - name: 加载缓存0
         uses: actions/cache/restore@v3
         if: ${{ inputs.index == '' }}
@@ -156,12 +150,6 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em17-${{ github.run_id }}
           restore-keys: stock-yjbb_em17-
-      - name: 保存缓存${{ inputs.index }}
-        uses: actions/cache/save@v3
-        if: ${{ inputs.index != '' }}
-        with:
-          path: ~/stock
-          key: stock-yjbb_em${{ inputs.index }}-${{ github.run_id }}
       - name: 安装Python
         uses: actions/setup-python@v4
         with:
@@ -190,3 +178,15 @@ jobs:
           mkdir -p ~/stock
           cp stock/data/yjbb_em${{ inputs.index }}.db ~/stock
           ls -al ~/stock
+      - name: 保存缓存${{ inputs.index }}
+        uses: actions/cache/save@v3
+        if: ${{ inputs.index != '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em${{ inputs.index }}-${{ github.run_id }}
+      - name: 保存缓存
+        uses: actions/cache/save@v3
+        if: ${{ inputs.index == '' }}
+        with:
+          path: ~/stock
+          key: stock-yjbb_em-${{ github.run_id }}
