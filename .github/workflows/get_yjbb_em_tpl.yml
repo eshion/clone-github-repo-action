@@ -4,16 +4,11 @@ name: 更新业绩报表_em_${{ inputs.env_start }}_${{ inputs.env_merge }}
 on:
   workflow_call:
     inputs:
-      env_start:
-        type: number
+      index:
+        type: string
         description: "起始环境变量0-17"
         required: false
-        default: 0
-      env_merge:
-        type: boolean
-        description: "合并环境变量"
-        required: false
-        default: false
+        default: "0"
     secrets:
       ACCESS_TOKEN:
         required: true
@@ -28,11 +23,7 @@ jobs:
       max-parallel: 6 # 控制并行数量（避免资源占用过高）
       matrix:
         # 动态生成序号列表：有 index 则单个，无则 0-17
-        index: ${{
-          inputs.env_merge ?  # 条件 + 空格 + ?
-          fromJSON('["' + inputs.env_start + '"]') :
-          fromJSON('[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]')
-        }}
+        index: ${{ fromJSON('["' + inputs.index + '"]') }}
     steps:
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
@@ -52,8 +43,7 @@ jobs:
           python-version: "3.x"
           cache: "pip"
         env:
-          ENV_START: "${{ inputs.env_start }}"
-          ENV_MERGE: "${{ inputs.env_merge }}"
+          INDEX: "${{ inputs.index }}"
           ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
