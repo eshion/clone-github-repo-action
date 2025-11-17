@@ -168,7 +168,7 @@ jobs:
           INDEX: ${{ inputs.index }}
         run: |
           cd stock
-          cp -rf ~/stock/yjbb_em* data/
+          cp -rf ~/stock/* data/
           ls -alh data/
           touch data/yjbb_em${{ inputs.index }}.db
           python tools/get_yjbb_em.py
