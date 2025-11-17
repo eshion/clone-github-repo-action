@@ -168,8 +168,8 @@ jobs:
           INDEX: ${{ inputs.index }}
         run: |
           cd stock
-          ls -al ~/stock/
           cp -rf ~/stock/yjbb_em* data/
+          ls -alh data/
           touch data/yjbb_em${{ inputs.index }}.db
           python tools/get_yjbb_em.py
       - name: 移到缓存
