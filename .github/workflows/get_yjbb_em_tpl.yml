@@ -38,7 +38,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em0-${{ github.run_id }}
           restore-keys: stock-yjbb_em0-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存1
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -46,7 +46,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em1-${{ github.run_id }}
           restore-keys: stock-yjbb_em1-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存2
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -54,7 +54,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em2-${{ github.run_id }}
           restore-keys: stock-yjbb_em2-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存3
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -62,7 +62,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em3-${{ github.run_id }}
           restore-keys: stock-yjbb_em3-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存4
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -70,7 +70,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em4-${{ github.run_id }}
           restore-keys: stock-yjbb_em4-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存5
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -78,7 +78,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em5-${{ github.run_id }}
           restore-keys: stock-yjbb_em5-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存6
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -86,7 +86,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em6-${{ github.run_id }}
           restore-keys: stock-yjbb_em6-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存7
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -94,7 +94,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em7-${{ github.run_id }}
           restore-keys: stock-yjbb_em7-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存8
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -102,7 +102,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em8-${{ github.run_id }}
           restore-keys: stock-yjbb_em8-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存9
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -110,7 +110,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em9-${{ github.run_id }}
           restore-keys: stock-yjbb_em9-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存10
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -118,7 +118,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em10-${{ github.run_id }}
           restore-keys: stock-yjbb_em10-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存11
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -126,7 +126,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em11-${{ github.run_id }}
           restore-keys: stock-yjbb_em11-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存12
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -134,7 +134,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em12-${{ github.run_id }}
           restore-keys: stock-yjbb_em12-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存13
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -142,7 +142,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em13-${{ github.run_id }}
           restore-keys: stock-yjbb_em13-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存14
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -150,7 +150,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em14-${{ github.run_id }}
           restore-keys: stock-yjbb_em14-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存15
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -158,7 +158,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em15-${{ github.run_id }}
           restore-keys: stock-yjbb_em15-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存16
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -166,7 +166,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em16-${{ github.run_id }}
           restore-keys: stock-yjbb_em16-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存17
         uses: actions/cache@v3
         if: ${{ inputs.index == '' }}
@@ -174,7 +174,7 @@ jobs:
           path: ~/stock
           key: stock-yjbb_em17-${{ github.run_id }}
           restore-keys: stock-yjbb_em17-
-          save-always: false
+          lookup-only: true
       - name: 加载缓存${{ inputs.index }}
         uses: actions/cache@v3
         if: ${{ inputs.index != '' }}
