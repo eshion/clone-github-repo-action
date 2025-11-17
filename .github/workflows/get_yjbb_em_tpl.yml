@@ -202,11 +202,11 @@ jobs:
           cd stock
           ls -al ~/stock/
           cp -rf ~/stock/yjbb_em* data/
-          touch data/yjbb_em.db
+          touch data/yjbb_em${{ inputs.index }}.db
           python tools/get_yjbb_em.py
       - name: 移到缓存
         run: |
           rm -rf ~/stock
           mkdir -p ~/stock
-          cp stock/data/yjbb_em* ~/stock
+          cp stock/data/yjbb_em${{ inputs.index }}.db ~/stock
           ls -al ~/stock
