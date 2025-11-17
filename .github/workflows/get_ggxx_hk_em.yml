@@ -40,7 +40,7 @@ jobs:
         run: |
           rm -rf ~/stock
           mkdir -p ~/stock
-          cp stock/data/ggxx_hk_em.db ~/stock
+          cp stock/cache/ggxx_hk_em.db ~/stock
           ls -al ~/stock
       - name: 保存缓存
         uses: actions/cache/save@v3

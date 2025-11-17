@@ -168,15 +168,16 @@ jobs:
           INDEX: ${{ inputs.index }}
         run: |
           cd stock
-          cp -rf ~/stock/* data/
-          ls -alh data/
-          touch data/yjbb_em${{ inputs.index }}.db
+          mkdir -p cache ~/stock
+          cp -rf ~/stock/* cache/
+          ls -alh cache/
+          touch cache/yjbb_em${{ inputs.index }}.db
           python tools/get_yjbb_em.py
       - name: 移到缓存
         run: |
           rm -rf ~/stock
           mkdir -p ~/stock
-          cp stock/data/yjbb_em${{ inputs.index }}.db ~/stock
+          cp stock/cache/yjbb_em${{ inputs.index }}.db ~/stock
           ls -al ~/stock
       - name: 保存缓存${{ inputs.index }}
         uses: actions/cache/save@v3

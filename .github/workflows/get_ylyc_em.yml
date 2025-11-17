@@ -40,7 +40,7 @@ jobs:
         run: |
           rm -rf ~/stock
           mkdir -p ~/stock
-          cp stock/data/ylyc_em.db ~/stock
+          cp stock/cache/ylyc_em.db ~/stock
           ls -al ~/stock
       - name: 保存缓存
         uses: actions/cache/save@v3
