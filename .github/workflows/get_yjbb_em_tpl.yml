@@ -49,7 +49,7 @@ jobs:
           python-version: "3.x"
           cache: "pip"
         env:
-          INDEX: ${{ inputs.index }}
+          INDEX: ${{ github.event.inputs.index }}
           ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
