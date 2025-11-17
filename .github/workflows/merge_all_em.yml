@@ -90,6 +90,7 @@ jobs:
         run: |
           cd stock
           mkdir -p cache ~/stock
+          shopt -s nullglob
           cp -rf ~/stock/* cache/
           ls -al cache/
           python tools/merge_all_em.py
