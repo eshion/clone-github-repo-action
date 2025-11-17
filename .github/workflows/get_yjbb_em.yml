@@ -6,116 +6,116 @@ on:
   # schedule:
   #   - cron: '26 19 * * *'
 jobs:
-  yjbb_em0:
-    secrets: inherit
-    with:
-      index: "0"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em1:
-    secrets: inherit
-    with:
-      index: "1"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em2:
-    secrets: inherit
-    with:
-      index: "2"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em3:
-    secrets: inherit
-    with:
-      index: "3"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em4:
-    secrets: inherit
-    with:
-      index: "4"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em5:
-    secrets: inherit
-    with:
-      index: "5"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em6:
-    secrets: inherit
-    with:
-      index: "6"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em7:
-    secrets: inherit
-    with:
-      index: "7"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em8:
-    secrets: inherit
-    with:
-      index: "8"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em9:
-    secrets: inherit
-    with:
-      index: "9"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em10:
-    secrets: inherit
-    with:
-      index: "10"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em11:
-    secrets: inherit
-    with:
-      index: "11"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em12:
-    secrets: inherit
-    with:
-      index: "12"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em13:
-    secrets: inherit
-    with:
-      index: "13"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em14:
-    secrets: inherit
-    with:
-      index: "14"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em15:
-    secrets: inherit
-    with:
-      index: "15"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em16:
-    secrets: inherit
-    with:
-      index: "16"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  yjbb_em17:
-    secrets: inherit
-    with:
-      index: "17"
-    uses: ./.github/workflows/get_yjbb_em_tpl.yml
-  merge_yjbb_em:
-    needs:
-      - yjbb_em0
-      - yjbb_em1
-      - yjbb_em2
-      - yjbb_em3
-      - yjbb_em4
-      - yjbb_em5
-      - yjbb_em6
-      - yjbb_em7
-      - yjbb_em8
-      - yjbb_em9
-      - yjbb_em10
-      - yjbb_em11
-      - yjbb_em12
-      - yjbb_em13
-      - yjbb_em14
-      - yjbb_em15
-      - yjbb_em16
-      - yjbb_em17
+  # yjbb_em0:
+  #   secrets: inherit
+  #   with:
+  #     index: "0"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em1:
+  #   secrets: inherit
+  #   with:
+  #     index: "1"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em2:
+  #   secrets: inherit
+  #   with:
+  #     index: "2"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em3:
+  #   secrets: inherit
+  #   with:
+  #     index: "3"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em4:
+  #   secrets: inherit
+  #   with:
+  #     index: "4"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em5:
+  #   secrets: inherit
+  #   with:
+  #     index: "5"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em6:
+  #   secrets: inherit
+  #   with:
+  #     index: "6"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em7:
+  #   secrets: inherit
+  #   with:
+  #     index: "7"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em8:
+  #   secrets: inherit
+  #   with:
+  #     index: "8"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em9:
+  #   secrets: inherit
+  #   with:
+  #     index: "9"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em10:
+  #   secrets: inherit
+  #   with:
+  #     index: "10"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em11:
+  #   secrets: inherit
+  #   with:
+  #     index: "11"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em12:
+  #   secrets: inherit
+  #   with:
+  #     index: "12"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em13:
+  #   secrets: inherit
+  #   with:
+  #     index: "13"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em14:
+  #   secrets: inherit
+  #   with:
+  #     index: "14"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em15:
+  #   secrets: inherit
+  #   with:
+  #     index: "15"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em16:
+  #   secrets: inherit
+  #   with:
+  #     index: "16"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  # yjbb_em17:
+  #   secrets: inherit
+  #   with:
+  #     index: "17"
+  #   uses: ./.github/workflows/get_yjbb_em_tpl.yml
+  merge:
+    # needs:
+    #   - yjbb_em0
+    #   - yjbb_em1
+    #   - yjbb_em2
+    #   - yjbb_em3
+    #   - yjbb_em4
+    #   - yjbb_em5
+    #   - yjbb_em6
+    #   - yjbb_em7
+    #   - yjbb_em8
+    #   - yjbb_em9
+    #   - yjbb_em10
+    #   - yjbb_em11
+    #   - yjbb_em12
+    #   - yjbb_em13
+    #   - yjbb_em14
+    #   - yjbb_em15
+    #   - yjbb_em16
+    #   - yjbb_em17
     secrets: inherit
     with:
       index: ""
