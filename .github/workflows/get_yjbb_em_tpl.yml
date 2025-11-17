@@ -169,8 +169,7 @@ jobs:
         run: |
           cd stock
           mkdir -p cache ~/stock
-          shopt -s nullglob
-          cp -rf ~/stock/* cache/
+          find ~/stock -mindepth 1 -maxdepth 1 -exec cp -rf {} cache/ \;
           ls -alh cache/
           touch cache/yjbb_em${{ inputs.index }}.db
           python tools/get_yjbb_em.py
