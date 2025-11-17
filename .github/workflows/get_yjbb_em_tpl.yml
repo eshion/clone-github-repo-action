@@ -1,0 +1,73 @@
+name: 更新业绩报表_em_${{ inputs.env_start }}_${{ inputs.env_merge }}
+
+# 触发条件
+on:
+  workflow_call:
+    inputs:
+      env_start:
+        type: number
+        description: "起始环境变量0-17"
+        required: false
+        default: 0
+      env_merge:
+        type: boolean
+        description: "合并环境变量"
+        required: false
+        default: false
+    secrets:
+      ACCESS_TOKEN:
+        required: true
+        description: "GitHub Access Token"
+  workflow_dispatch:
+
+jobs:
+  yjbb_em:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # 单个缓存加载失败不影响其他
+      max-parallel: 6 # 控制并行数量（避免资源占用过高）
+      matrix:
+        # 动态生成序号列表：有 index 则单个，无则 0-17
+        index: "${{
+          github.event.inputs.env_merge
+          ? fromJSON('[${{ github.event.inputs.env_start }}]')
+          : fromJSON('[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]')
+          }}"
+    steps:
+      - name: 迁出代码
+        uses: eshion/clone-github-repo-action@main
+        with:
+          owner: "eshion"
+          repository: "stock"
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+      - name: 加载缓存
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
+          key: stock-yjbb_em${{ matrix.index }}-${{ github.run_id }}
+          restore-keys: stock-yjbb_em${{ matrix.index }}-
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+          cache: "pip"
+        env:
+          ENV_START: "${{ inputs.env_start }}"
+          ENV_MERGE: "${{ inputs.env_merge }}"
+          ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
+      - name: 设置时区
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 安装依赖
+        run: |
+          cd stock
+          pip install -r requirements.txt
+      - name: 执行任务
+        run: |
+          cd stock
+          python tools/get_yjbb_em.py
+      - name: 移到缓存
+        run: |
+          rm -rf ~/stock
+          mkdir -p ~/stock
+          cp stock/data/yjbb_em* ~/stock
+          ls -al ~/stock
