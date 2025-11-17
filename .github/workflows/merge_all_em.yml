@@ -89,7 +89,7 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
-          mkdir -p cache
+          mkdir -p cache ~/stock
           cp -rf ~/stock/* cache/
           ls -al cache/
           python tools/merge_all_em.py
