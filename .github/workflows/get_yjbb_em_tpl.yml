@@ -23,7 +23,7 @@ jobs:
       max-parallel: 6 # 控制并行数量（避免资源占用过高）
       matrix:
         # 动态生成序号列表：有 index 则单个，无则 0-17
-        index: ${{ fromJSON(inputs.index) }}
+        index: ${{ fromJSON('['+inputs.index+']') }}
     steps:
       - name: 迁出代码
         uses: eshion/clone-github-repo-action@main
