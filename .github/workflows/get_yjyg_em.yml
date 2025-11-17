@@ -19,12 +19,6 @@ jobs:
           owner: "eshion"
           repository: "stock"
           access-token: ${{ secrets.ACCESS_TOKEN }}
-      - name: 加载缓存
-        uses: actions/cache@v3
-        with:
-          path: ~/stock
-          key: stock-yjyg_em-${{ github.run_id }}
-          restore-keys: stock-yjyg_em-
       - name: 安装Python
         uses: actions/setup-python@v4
         with:
@@ -48,3 +42,9 @@ jobs:
           mkdir -p ~/stock
           cp stock/data/yjyg_em.db ~/stock
           ls -al ~/stock
+      - name: 保存缓存
+        uses: actions/cache/save@v3
+        with:
+          path: ~/stock
+          key: stock-yjyg_em-${{ github.run_id }}
+          restore-keys: stock-yjyg_em-
