@@ -10,4 +10,4 @@ jobs:
     secrets: inherit
     with:
       index: "0"
-    uses: ./.github/workflows/get_yjbb_em.yml
+    uses: ./.github/workflows/get_yjbb_em_tpl.yml
