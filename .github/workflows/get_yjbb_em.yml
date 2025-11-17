@@ -9,5 +9,5 @@ jobs:
   yjbb_em0:
     secrets: inherit
     with:
-      index: "0"
+      index: "[0]"
     uses: ./.github/workflows/get_yjbb_em_tpl.yml
