@@ -35,6 +35,12 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/stock
+          key: stock-yjbb_em-${{ github.run_id }}
+          restore-keys: stock-yjbb_em-
+      - name: 加载缓存${{ inputs.index }}
+        uses: actions/cache@v3
+        with:
+          path: ~/stock
           key: stock-yjbb_em${{ matrix.index }}-${{ github.run_id }}
           restore-keys: stock-yjbb_em${{ matrix.index }}-
       - name: 安装Python
