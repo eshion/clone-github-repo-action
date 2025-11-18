@@ -35,6 +35,7 @@ jobs:
       - name: 执行任务
         run: |
           cd stock
+          mkdir -p cache ~/stock
           python tools/get_ggxx_hk_sina.py
       - name: 移到缓存
         run: |
