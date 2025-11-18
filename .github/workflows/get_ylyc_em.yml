@@ -37,6 +37,7 @@ jobs:
           cd stock
           mkdir -p cache ~/stock
           touch cache/ylyc_em.db
+          touch cache/ylyc_em.db
           python tools/get_ylyc_em.py
       - name: 移到缓存
         run: |
