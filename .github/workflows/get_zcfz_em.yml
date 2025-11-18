@@ -49,4 +49,3 @@ jobs:
         with:
           path: ~/stock
           key: stock-zcfz_em-${{ github.run_id }}
-          restore-keys: stock-zcfz_em-

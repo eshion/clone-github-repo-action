@@ -49,4 +49,3 @@ jobs:
         with:
           path: ~/stock
           key: stock-fhps_em-${{ github.run_id }}
-          restore-keys: stock-fhps_em-

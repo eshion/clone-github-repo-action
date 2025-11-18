@@ -49,4 +49,3 @@ jobs:
         with:
           path: ~/stock
           key: stock-ggxx_hk_sina-${{ github.run_id }}
-          restore-keys: stock-ggxx_hk_sina-

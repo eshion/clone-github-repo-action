@@ -50,4 +50,3 @@ jobs:
         with:
           path: ~/stock
           key: stock-ylyc_em-${{ github.run_id }}
-          restore-keys: stock-ylyc_em-
