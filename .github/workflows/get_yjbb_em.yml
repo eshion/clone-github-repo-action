@@ -1,5 +1,10 @@
 name: 更新业绩报表_em
 on:
+  workflow_call:
+    secrets:
+      ACCESS_TOKEN:
+        required: true
+        description: "GitHub Access Token"
   workflow_dispatch:
   # 定时触发，UTC->Beijing 增加8小时得到北京时间
   # * 1 * * * -> 09:00
