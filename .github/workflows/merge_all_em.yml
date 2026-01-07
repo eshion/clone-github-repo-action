@@ -32,6 +32,18 @@ jobs:
           path: ~/stock
           key: stock-fhps_em-${{ github.run_id }}
           restore-keys: stock-fhps_em-
+      - name: 加载缓存-etf_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-etf_em-${{ github.run_id }}
+          restore-keys: stock-etf_em-
+      - name: 加载缓存-lof_em
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-lof_em-${{ github.run_id }}
+          restore-keys: stock-lof_em-
       - name: 加载缓存-jjcc_cnf
         uses: actions/cache/restore@v3
         with:
