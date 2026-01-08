@@ -92,6 +92,12 @@ jobs:
           path: ~/stock
           key: stock-ggxx_hk_sina-${{ github.run_id }}
           restore-keys: stock-ggxx_hk_sina-
+      - name: 加载缓存-cov_sina
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-cov_sina-${{ github.run_id }}
+          restore-keys: stock-cov_sina-
       - name: 设置时区
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
       - name: 安装依赖
