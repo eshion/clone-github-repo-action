@@ -30,6 +30,15 @@ jobs:
   ggxx_hk_sina:
     secrets: inherit
     uses: ./.github/workflows/get_ggxx_hk_sina.yml
+  etf_em:
+    secrets: inherit
+    uses: ./.github/workflows/get_etf_em.yml
+  lof_em:
+    secrets: inherit
+    uses: ./.github/workflows/get_lof_em.yml
+  cov_sina:
+    secrets: inherit
+    uses: ./.github/workflows/get_cov_sina.yml
   merge_em:
     secrets: inherit
     needs:
@@ -41,4 +50,7 @@ jobs:
       - ylyc_em
       - zcfz_em
       - ggxx_hk_sina
+      - etf_em
+      - lof_em
+      - cov_sina
     uses: ./.github/workflows/merge_all_em.yml
