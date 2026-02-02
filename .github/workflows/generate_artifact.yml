@@ -19,6 +19,18 @@ jobs:
           path: ~/stock
           key: stock-fhps_em-${{ github.run_id }}
           restore-keys: stock-fhps_em-
+      - name: 加载缓存-etf_sina
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-etf_sina-${{ github.run_id }}
+          restore-keys: stock-etf_sina-
+      - name: 加载缓存-lof_sina
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-lof_sina-${{ github.run_id }}
+          restore-keys: stock-lof_sina-
       - name: 加载缓存-jjcc_cnf
         uses: actions/cache/restore@v3
         with:
@@ -61,12 +73,18 @@ jobs:
           path: ~/stock
           key: stock-zcfz_em-${{ github.run_id }}
           restore-keys: stock-zcfz_em-
-      - name: 加载缓存-ggxx_hk_em
+      - name: 加载缓存-ggxx_hk_sina
         uses: actions/cache/restore@v3
         with:
           path: ~/stock
-          key: stock-ggxx_hk_em-${{ github.run_id }}
-          restore-keys: stock-ggxx_hk_em-
+          key: stock-ggxx_hk_sina-${{ github.run_id }}
+          restore-keys: stock-ggxx_hk_sina-
+      - name: 加载缓存-cov_sina
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/stock
+          key: stock-cov_sina-${{ github.run_id }}
+          restore-keys: stock-cov_sina-
       - name: 设置时区
         run: |
           sudo timedatectl set-timezone 'Asia/Shanghai'
